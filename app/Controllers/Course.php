@@ -1,5 +1,5 @@
 <?php
 
-use App\Controllers\BaseController;
+namespace App\Controllers;
 
 class Course extends BaseController{}
