@@ -1,5 +1,10 @@
 <?php
 
-use App\Controllers\BaseController;
+namespace App\Controllers;
 
-class Course extends BaseController{}
+class Course extends BaseController{
+    public function index()
+    {
+        return view('add_course');
+    }
+}
