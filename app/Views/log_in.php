@@ -51,14 +51,14 @@
                                 <h3 class="mx-auto">LOG IN</h3>
                             </div>
                             <div class="card-body">
-                                <form action="process.php" method="POST">
+                                <form action="<?= base_url('/login/process') ?>" method="POST">
                                     <div class="mb-3 col-md-9 mx-auto">
                                         <label for="email" class="form-label" style="color: black;">Email</label>
-                                        <input type="email" class="form-control border border-dark" id="email" placeholder="Enter your email" oninput="validationForm()">
+                                        <input type="email" class="form-control border border-dark" id="email" name="email" placeholder="Enter your email" oninput="validationForm()">
                                     </div>
                                     <div class="mb-3 col-md-9 mx-auto">
                                         <label for="password" class="form-label" style="color: black;">Password</label>
-                                        <input type="password" class="form-control border border-dark" id="password" placeholder="Enter your password" oninput="validationForm()">
+                                        <input type="password" class="form-control border border-dark" id="password" name="password" placeholder="Enter your password" oninput="validationForm()">
                                     </div>
                                     <div class="card-text mb-3 col-md-9 mx-auto">
                                         <p class="card-text"><a href="#">Forgot password?</a></p>
