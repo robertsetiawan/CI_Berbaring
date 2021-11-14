@@ -36,7 +36,7 @@
                     </li>
 
                     <li class="menu-item w-25">
-                        <form  method="GET">
+                        <form method="GET">
                             <div class="form-group position-relative has-icon-left">
                                 <input type="text" class="form-control" placeholder="Search ">
                                 <div class="form-control-icon">
@@ -47,13 +47,13 @@
                     </li>
 
                     <li class="menu-item">
-                        <a href="#" class='btn btn-success'>
+                        <a href="/register" class='btn btn-success'>
                             <span>Sign Up</span>
                         </a>
                     </li>
 
                     <li class="menu-item">
-                        <a href="#" class='menu-link'>
+                        <a href="/login" class='menu-link'>
                             <span>Login</span>
                         </a>
                     </li>
