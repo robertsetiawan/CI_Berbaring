@@ -27,4 +27,5 @@ class UserModel extends Model{
             return $row->user_id;
         }
     }
+
 }

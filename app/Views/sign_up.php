@@ -53,24 +53,27 @@
                                 <h3 class="mx-auto">SIGN UP</h3>
                             </div>
                             <div class="card-body">
-                                <form action="process.php" method="POST">
+                                <form action="<?= base_url('/register/process') ?>" method="POST">
                                     <div class="mb-3 col-md-9 mx-auto">
                                         <label for="full_name" class="form-label" style="color: black;">Full Name</label>
-                                        <input type="text" class="form-control border border-dark" id="full_name" placeholder="Enter your full name" oninput="validationForm()">
+                                        <input type="text" class="form-control border border-dark" id="full_name" name='full_name' placeholder="Enter your full name" oninput="validationForm()">
                                     </div>
                                     <div class="mb-3 col-md-9 mx-auto">
                                         <label for="email" class="form-label" style="color: black;">Email</label>
-                                        <input type="email" class="form-control border border-dark" id="email" placeholder="Enter your email" oninput="validationForm()">
+                                        <input type="email" class="form-control border border-dark" id="email" name='email' placeholder="Enter your email" oninput="validationForm()">
                                     </div>
                                     <div class="mb-3 col-md-9 mx-auto">
                                         <label for="password" class="form-label" style="color: black;">Password</label>
-                                        <input type="password" class="form-control border border-dark" id="password" placeholder="Enter your password" oninput="validationForm()">
+                                        <input type="password" class="form-control border border-dark" id="password" name='password' placeholder="Enter your password" oninput="validationForm()">
                                     </div>
                                     <div class="form-check mb-3 col-md-9 mx-auto">
                                         <input class="form-check-input" type="checkbox" value="" id="policy" oninput="validationForm()">
                                         <label class="form-check-label" for="policy">
                                             I agree to the Berbaring <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
                                         </label>
+                                    </div>
+                                    <div class="card-text mb-3 col-md-9 mx-auto">
+                                        <p class="text-danger"><?= $session->getFlashdata('error_reg_email')?></p>
                                     </div>
                                     <div class="d-grid gap-2 mb-3 col-9 mx-auto mt-5">
                                         <button class="btn btn-primary" type="submit" id="submit" disabled>Sign Up</button>
