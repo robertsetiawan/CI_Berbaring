@@ -1,15 +1,21 @@
 <?php
 
 //untuk keperluan card homepage pelajar
-function displayCard($title="judul", $content="content", $picture="assets/images/samples/banana.jpg", $anchor= "#", $anchorName="START COURSE"){
+function displayCard($title="judul", $content="content", $picture="/assets/images/samples/banana.jpg", $anchor= "#", $anchorName="START COURSE"){
+    if (strlen($content)>63){
+        $deskripsi = substr($content, 0, 60);
+        $deskripsi .= "...";
+    }else{
+        $deskripsi = $content;
+    }
     echo '
-    <div class="card" style="max-width: 30rem;">
+    <div class="card" style="max-width: 20rem; max-height: 25rem;">
         <div class="card-content">
             <img class="img-fluid w-100" src="'.$picture.'" alt="image">
             <div class="card-body">
                 <h4 class="card-title">'.$title.'</h4>
                 <p class="card-text">
-                    '.$content.'
+                    '.$deskripsi.'
                 </p>
                 <a href="'.$anchor.'">'.$anchorName.'</a>
             </div>
@@ -19,6 +25,7 @@ function displayCard($title="judul", $content="content", $picture="assets/images
 }
 
 ?>
+<!--
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,12 +44,12 @@ function displayCard($title="judul", $content="content", $picture="assets/images
 <section id="content-types">
     <div class="row">
         <div class="col-xl-4 col-md-6 col-sm-12">
-            <!--card start here-->
             <?php
-            displayCard("AGUNG BAU", "TES KONTEN DAIOSNASN");
+            //card here
+            //displayCard("AGUNG BAU", "TES KONTEN DAIOSNASN");
             ?>
         </div>
     </div>
 </section>
 </body>
-</html>
+</html>-->

@@ -1,3 +1,12 @@
+<?php
+$session = session();
+//anchor My Learnings berubah bila sudah login
+if (!$session->get('is_logged_in')){
+    $learnings = '/login';
+}else{
+    $learnings = '/homepage/pelajar/1';
+}
+?>
 <div id="header" class="layout-horizontal">
     <header class="mb-5">
         <div class="header-top-right">
@@ -30,7 +39,7 @@
                     </li>
 
                     <li class="menu-item">
-                        <a href="#" class='menu-link'>
+                        <a href="<?= base_url($learnings)?>" class='menu-link'>
                             <span>My Learnings</span>
                         </a>
                     </li>
@@ -47,8 +56,7 @@
                     </li>
 
                     <!-- code php untuk mengubah global nav saat user login -->
-                    <?php 
-                    $session = session();
+                    <?php
                     if (!$session->get('is_logged_in')):?>
                         <li class="menu-item">
                             <a href="/register" class='btn btn-success'>
@@ -57,7 +65,7 @@
                         </li>
 
                         <li class="menu-item">
-                            <a href="/login" class='menu-link'>
+                            <a href="<?= base_url('/login')?>" class='menu-link'>
                                 <span>Login</span>
                             </a>
                         </li>
