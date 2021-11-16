@@ -51,17 +51,21 @@
                                 <h3 class="mx-auto">LOG IN</h3>
                             </div>
                             <div class="card-body">
-                                <form action="process.php" method="POST">
+                                <form action="<?= base_url('/login/process') ?>" method="POST">
                                     <div class="mb-3 col-md-9 mx-auto">
                                         <label for="email" class="form-label" style="color: black;">Email</label>
-                                        <input type="email" class="form-control border border-dark" id="email" placeholder="Enter your email" oninput="validationForm()">
+                                        <input type="email" class="form-control border border-dark" id="email" name="email" placeholder="Enter your email" oninput="validationForm()"
+                                        <?php if ($session->getFlashdata('register_email')!=NULL){ echo 'value=\''.$session->getFlashdata('register_email').'\''; }?>>
                                     </div>
                                     <div class="mb-3 col-md-9 mx-auto">
                                         <label for="password" class="form-label" style="color: black;">Password</label>
-                                        <input type="password" class="form-control border border-dark" id="password" placeholder="Enter your password" oninput="validationForm()">
+                                        <input type="password" class="form-control border border-dark" id="password" name="password" placeholder="Enter your password" oninput="validationForm()">
                                     </div>
                                     <div class="card-text mb-3 col-md-9 mx-auto">
                                         <p class="card-text"><a href="#">Forgot password?</a></p>
+                                    </div>
+                                    <div class="card-text mb-3 col-md-9 mx-auto">
+                                        <p class="text-danger"><?= $session->getFlashdata('error_login')?></p>
                                     </div>
                                     <div class="d-grid gap-2 mb-3 col-9 mx-auto mt-5">
                                         <button class="btn btn-primary" type="submit" id="submit" disabled>Log In</button>

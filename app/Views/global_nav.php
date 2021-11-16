@@ -19,7 +19,7 @@
 
                     <li class="menu-item ">
                         <a href="#" class='menu-link'>
-                            <span>Login</span>
+                            <span>Home</span>
                         </a>
                     </li>
 
@@ -46,17 +46,28 @@
                         </form>
                     </li>
 
-                    <li class="menu-item">
-                        <a href="/register" class='btn btn-success'>
-                            <span>Sign Up</span>
-                        </a>
-                    </li>
+                    <!-- code php untuk mengubah global nav saat user login -->
+                    <?php 
+                    $session = session();
+                    if (!$session->get('is_logged_in')):?>
+                        <li class="menu-item">
+                            <a href="/register" class='btn btn-success'>
+                                <span>Sign Up</span>
+                            </a>
+                        </li>
 
-                    <li class="menu-item">
-                        <a href="/login" class='menu-link'>
-                            <span>Login</span>
-                        </a>
-                    </li>
+                        <li class="menu-item">
+                            <a href="/login" class='menu-link'>
+                                <span>Login</span>
+                            </a>
+                        </li>
+                    <?php else: ?>
+                        <li class="menu-item">
+                            <a href="<?= base_url('/logout') ?>" class='menu-link'>
+                                <span><?= $session->get('email') ?></span>
+                            </a>
+                        </li>
+                    <?php endif ?>
                 </ul>
             </div>
         </nav>
