@@ -73,7 +73,7 @@
                                         </label>
                                     </div>
                                     <div class="card-text mb-3 col-md-9 mx-auto">
-                                        <p class="text-danger"><?= $session->getFlashdata('error_reg_email')?></p>
+                                        <p class="text-danger"><?= $session->getFlashdata('error_reg_email') ?></p>
                                     </div>
                                     <div class="d-grid gap-2 mb-3 col-9 mx-auto mt-5">
                                         <button class="btn btn-primary" type="submit" id="submit" disabled>Sign Up</button>
