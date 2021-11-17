@@ -5,6 +5,8 @@ namespace App\Controllers;
 use App\Models\CategoryModel;
 use App\Models\CourseModel;
 
+use function PHPUnit\Framework\isEmpty;
+
 class Course extends BaseController
 {
     public function __construct()
@@ -36,19 +38,18 @@ class Course extends BaseController
 
     public function add()
     {
-
         $validation = \Config\Services::validation();
 
         $validation->setRules($this->courses->validationRules, $this->courses->errorMessage);
 
-        $isValid = $validation->withRequest($this->request)->run(); // validasi name, desc, category id
+        $isValid = $validation->withRequest($this->request)->run();
 
         $isPaidCourse = $this->request->getPost('paid_check'); //0 = false, 1 = true
 
-        if ($validation->check($isPaidCourse, 'required')) { //validasi paid check
+        if ($isPaidCourse != null) { //validasi paid check
 
-            if ($isPaidCourse && !$validation->check($this->request->getPost('c_price'), 'greater_than[-1]')) {
-                session()->setFlashdata('error_c_price', 'Harga Course harus lebih dari 0!');
+            if ($isPaidCourse && $this->request->getPost('c_price') < 1) {
+                session()->setFlashdata('error_c_price', 'Harga Course harus lebih dari 0');
 
                 $isValid = false;
             }
@@ -74,7 +75,7 @@ class Course extends BaseController
             $isValid = false;
         }
 
-        if ($this->request->getFile('course_picture') == null || !$this->request->getFile('course_picture')->isValid()){
+        if ($this->request->getFile('course_picture') == null || !$this->request->getFile('course_picture')->isValid()) {
 
             session()->setFlashdata('error_course_picture_2', 'terjadi kesalahan upload gambar');
 
@@ -92,7 +93,7 @@ class Course extends BaseController
             $data = [
                 'c_name' => $this->request->getPost('c_name'),
                 'c_desc' => $this->request->getPost('c_desc'),
-                'c_price' => ($isPaidCourse)? $this->request->getPost('c_price'): 0,
+                'c_price' => ($isPaidCourse) ? $this->request->getPost('c_price') : 0,
                 'c_imagepath' => $fileName,
                 'category_id' => $this->request->getPost('category_id')
             ];
@@ -103,6 +104,7 @@ class Course extends BaseController
             $this->generateErrorToView($validation);
 
             return redirect()->back()->withInput();
+            // echo $validation->listErrors();
         }
     }
 }
