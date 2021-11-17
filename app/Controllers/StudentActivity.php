@@ -10,16 +10,11 @@ class StudentActivity extends BaseController{
     }
 
     function page($curr){
-        $session = session();
-        if ($session->get('is_logged_in')){
-            $data = [
-                'courses' => $this->activity->getUserStudentActivity(session()->get('id'), $curr),
-                'totalCourses' => $this->activity->getUserStudentActivityCount(session()->get('id')),
-                'page' => $curr
-            ];
-            return view('homepage_pelajar.php', $data);
-        }else{
-            return redirect()->to('/login');
-        }
+        $data = [
+            'courses' => $this->activity->getUserStudentActivity(session()->get('id'), $curr),
+            'totalCourses' => $this->activity->getUserStudentActivityCount(session()->get('id')),
+            'page' => $curr
+        ];
+        return view('homepage_pelajar.php', $data);
     }
 }

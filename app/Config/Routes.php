@@ -37,7 +37,7 @@ $routes->add('/course/add', 'Course::add'); //method post buat tambah course bar
 $routes->add('/login/process', 'User::login');
 $routes->add('/register/process', 'User::register');
 $routes->get('/logout', 'User::logout');
-$routes->add('/homepage/pelajar/(:any)', 'StudentActivity::page/$1');
+$routes->add('/homepage/pelajar/(:any)', 'StudentActivity::page/$1', ['filter' => 'auth']);
 
 /*
  * --------------------------------------------------------------------

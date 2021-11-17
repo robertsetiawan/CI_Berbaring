@@ -1,11 +1,13 @@
 <?php
 $session = session();
 //anchor My Learnings berubah bila sudah login
+/* sudah pakai filters
 if (!$session->get('is_logged_in')){
     $learnings = '/login';
 }else{
     $learnings = '/homepage/pelajar/1';
-}
+}*/
+$learnings = '/homepage/pelajar/1';
 ?>
 <div id="header" class="layout-horizontal">
     <header class="mb-5">
