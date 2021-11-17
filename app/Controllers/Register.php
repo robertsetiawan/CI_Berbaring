@@ -2,10 +2,10 @@
 
 namespace App\Controllers;
 
-class Home extends BaseController
+class Register extends BaseController
 {
     public function index()
     {
-        return view('landing_page.php');
+        return view('sign_up.php');
     }
 }
