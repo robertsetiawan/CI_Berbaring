@@ -115,14 +115,14 @@
                                 </div>
                             </div>
 
-                            <div class="d-flex justify-content-between mt-5 mb-3">
+                            <!-- <div class="d-flex justify-content-between mt-5 mb-3">
                                 <h4><b>Course Content</h4>
                                 <a href="#" class="btn btn-primary">Add Course</a>
-                            </div>
+                            </div> -->
 
-                            <div class="card">
+                            <!-- <div class="card">
                                 <div class="card-body">
-                                    <!--Kalau blm ada chapternya tampilin ini! -->
+                                    Kalau blm ada chapternya tampilin ini!
                                     <div class="d-flex justify-content-center fw-normal">
                                         <p hidden>Empty course content</p>
                                     </div>
@@ -154,11 +154,10 @@
                                         </li>
                                     </ul>
                                 </div>
-                            </div>
+                            </div> -->
 
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-5">
                                 <button type="submit" class="btn btn-primary-outline"><b>Save as Draft</b></button>
-                                <a class="btn btn-primary" type="button">Publish</a>
                             </div>
 
                         </form>
