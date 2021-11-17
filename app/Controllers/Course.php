@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\CategoryModel;
 use App\Models\CourseModel;
+use App\Models\SubchapterModel;
 
 class Course extends BaseController
 {
@@ -86,23 +87,36 @@ class Course extends BaseController
 
             $fileName = $file->getRandomName();
 
-            $file->move(ROOTPATH . 'public/uploads/', $fileName);
+            $c_id = (int)round(gettimeofday(true));
 
-            $data = [
-                'c_name' => $this->request->getPost('c_name'),
-                'c_desc' => $this->request->getPost('c_desc'),
-                'c_price' => ($isPaidCourse) ? $this->request->getPost('c_price') : 0,
-                'c_imagepath' => $fileName,
-                'category_id' => $this->request->getPost('category_id')
-            ];
+            $file->move(ROOTPATH . 'public/uploads/' .$c_id, $fileName);
 
-            $this->courses->insert($data);
+            $db = db_connect();
+
+            $c_name = $db->escape($this->request->getPost('c_name'));
+            $c_desc = $db->escape($this->request->getPost('c_desc'));
+            $c_price = ($isPaidCourse) ? $this->request->getPost('c_price') : 0;
+            $c_imagepath = $db->escape($fileName);
+            $category_id = $this->request->getPost('category_id');
+            $user_id = session()->get('id');
+
+            $this->courses->saveCourse($c_id, $c_name, $c_imagepath, $c_desc, $c_price, $category_id, $user_id);
+
+            return redirect()->to(base_url('course/'. $c_id. '/info'));
         } else {
-
             $this->generateErrorToView($validation);
 
             return redirect()->back()->withInput();
-            // echo $validation->listErrors();
         }
+    }
+
+    public function info($c_id)
+    {
+
+        $subchapters = new SubchapterModel();
+
+        $data['course'] = $this->courses->info($c_id);
+        $data['subchapters'] = $subchapters->where('c_id', $c_id)->findAll();
+        return view('info_course', $data);
     }
 }
