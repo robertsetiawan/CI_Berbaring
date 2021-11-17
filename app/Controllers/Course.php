@@ -5,8 +5,6 @@ namespace App\Controllers;
 use App\Models\CategoryModel;
 use App\Models\CourseModel;
 
-use function PHPUnit\Framework\isEmpty;
-
 class Course extends BaseController
 {
     public function __construct()
