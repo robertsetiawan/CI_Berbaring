@@ -34,6 +34,8 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Home::index');
 $routes->get('/course', 'Course::index');
 $routes->add('/course/add', 'Course::add'); //method post buat tambah course baru
+$routes->add('/contentdetails/coursedetails', 'Subchapter::contentdetails');
+$routes->add('/contentdetails/editcoursedetails', 'Subchapter::editcontent');
 $routes->add('/login/process', 'User::login');
 $routes->add('/register/process', 'User::register');
 $routes->get('/logout', 'User::logout');
