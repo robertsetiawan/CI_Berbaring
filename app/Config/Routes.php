@@ -38,6 +38,8 @@ $routes->get('/course/(:segment)/edit', 'Course::edit/$1', ['filter' => 'auth'])
 $routes->add('/course/(:segment)/update', 'Course::update/$1', ['filter' => 'auth']);
 $routes->get('/course/(:segment)/detail', 'Subchapter::index/$1', ['filter' => 'auth']);
 $routes->add('/course/(:segment)/detail/add', 'Subchapter::add/$1', ['filter' => 'auth']);
+$routes->get('/course/(:segment)/detail/(:segment)/edit', 'Subchapter::edit/$1/$2', ['filter' => 'auth']);
+$routes->add('/course/(:segment)/detail/(:segment)/update', 'Subchapter::update/$1/$2', ['filter' => 'auth']);
 $routes->get('/course/(:segment)/detail/(:segment)/delete', 'Subchapter::delete/$1/$2', ['filter' => 'auth']);
 $routes->add('/course/add', 'Course::add', ['filter' => 'auth']); //method post buat tambah course baru
 $routes->add('/login/process', 'User::login');
