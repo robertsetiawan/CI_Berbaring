@@ -32,8 +32,12 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
-$routes->get('/course', 'Course::index');
-$routes->add('/course/add', 'Course::add'); //method post buat tambah course baru
+$routes->get('/course', 'Course::index', ['filter' => 'auth']);
+$routes->get('/course/(:segment)/info', 'Course::info/$1', ['filter' => 'auth']);
+$routes->get('/course/(:segment)/detail', 'Subchapter::index/$1', ['filter' => 'auth']);
+$routes->add('/course/(:segment)/detail/add', 'Subchapter::add/$1', ['filter' => 'auth']);
+$routes->get('/course/(:segment)/detail/(:segment)/delete', 'Subchapter::delete/$1/$2', ['filter' => 'auth']);
+$routes->add('/course/add', 'Course::add', ['filter' => 'auth']); //method post buat tambah course baru
 $routes->add('/login/process', 'User::login');
 $routes->add('/register/process', 'User::register');
 $routes->get('/logout', 'User::logout');

@@ -34,11 +34,14 @@
                             <h4><b>Create Course: </b> Course Summary</h4>
                         </div>
                         <form method="POST" action="<?= base_url('/course/add') ?>" enctype="multipart/form-data" onsubmit="validationForm()">
-
+                            <?= csrf_field(); ?>
                             <div class="mb-3 row">
                                 <label for="name" class="col-sm-2 col-form-label">Course Name</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="c_name" class="form-control" id="name" aria-describedby="emailHelp" value="<?= old('c_name') ?>">
+                                    <input type="text" name="c_name" class="form-control" id="name" value="<?= old('c_name') ?>">
+                                    <?php if (!empty(session()->getFlashdata('error_c_name'))) : ?>
+                                        <div class="text-danger"><?= session()->getFlashdata('error_c_name') ?></div>
+                                    <?php endif; ?>
                                 </div>
                             </div>
 
@@ -57,13 +60,20 @@
                                             <?php endforeach ?>
                                         <?php endif ?>
                                     </select>
+                                    <?php if (!empty(session()->getFlashdata('error_category_id'))) : ?>
+                                        <div class="text-danger"><?= session()->getFlashdata('error_category_id') ?></div>
+                                    <?php endif; ?>
                                 </div>
+
                             </div>
 
                             <div class="mb-3 row">
                                 <label for="desc" class="col-sm-2 col-form-label">Description</label>
                                 <div class="col-sm-10">
                                     <textarea class="form-control" name="c_desc" id="desc" cols="30" rows="10"><?= old('c_desc') ?></textarea>
+                                    <?php if (!empty(session()->getFlashdata('error_c_desc'))) : ?>
+                                        <div class="text-danger"><?= session()->getFlashdata('error_c_desc') ?></div>
+                                    <?php endif; ?>
                                 </div>
                             </div>
 
@@ -85,6 +95,9 @@
                                 <label for="price" class="col-sm-2 col-form-label">Price</label>
                                 <div class="col-sm-10">
                                     <input type="number" value="<?= old('c_price') ?>" name="c_price" class="form-control" id="price">
+                                    <?php if (!empty(session()->getFlashdata('error_c_price'))) : ?>
+                                        <div class="text-danger"><?= session()->getFlashdata('error_c_price') ?></div>
+                                    <?php endif; ?>
                                 </div>
                             </div>
 
@@ -93,17 +106,23 @@
                                 <div class="col-sm-10">
                                     <input type="file" id="course_picture" name="course_picture" class="form-control" accept="image/*">
                                     <p class="mt-2"><small>Jenis File Image: png, jpg, atau jpeg. Maksimal ukuran file 2 mb.</small></p>
+                                    <?php if (!empty(session()->getFlashdata('error_course_picture_1'))) : ?>
+                                        <div class="text-danger"><?= session()->getFlashdata('error_course_picture_1') ?></div>
+                                    <?php endif; ?>
+                                    <?php if (!empty(session()->getFlashdata('error_course_picture_2'))) : ?>
+                                        <div class="text-danger"><?= session()->getFlashdata('error_course_picture_2') ?></div>
+                                    <?php endif; ?>
                                 </div>
                             </div>
 
-                            <div class="d-flex justify-content-between mt-5 mb-3">
+                            <!-- <div class="d-flex justify-content-between mt-5 mb-3">
                                 <h4><b>Course Content</h4>
                                 <a href="#" class="btn btn-primary">Add Course</a>
-                            </div>
+                            </div> -->
 
-                            <div class="card">
+                            <!-- <div class="card">
                                 <div class="card-body">
-                                    <!--Kalau blm ada chapternya tampilin ini! -->
+                                    Kalau blm ada chapternya tampilin ini!
                                     <div class="d-flex justify-content-center fw-normal">
                                         <p hidden>Empty course content</p>
                                     </div>
@@ -135,11 +154,10 @@
                                         </li>
                                     </ul>
                                 </div>
-                            </div>
+                            </div> -->
 
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-5">
-                                <a href="#" class="btn btn-primary-outline"><b>Save as Draft</b></a>
-                                <button class="btn btn-primary" type="submit">Publish</button>
+                                <button type="submit" class="btn btn-primary-outline"><b>Save as Draft</b></button>
                             </div>
 
                         </form>
