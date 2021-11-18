@@ -30,8 +30,9 @@
                 <div class="page-content">
                     <!-- Basic Tables start -->
                     <section class="section">
-                        <div class="subtitle mb-3">
+                        <div class="d-flex justify-content-between mt-5 subtitle mb-3">
                             <h4><b>Info Course: </b> Course Summary</h4>
+                            <a href="<?= base_url('course/' . $course['c_id'] . '/edit') ?>" class="btn btn-primary"><i class="fa fa-edit"></i> Edit Course</a>
                         </div>
                         <div class="mb-3 row">
                             <label for="name" class="col-sm-2 col-form-label">Course Name</label>
