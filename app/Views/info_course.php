@@ -30,8 +30,9 @@
                 <div class="page-content">
                     <!-- Basic Tables start -->
                     <section class="section">
-                        <div class="subtitle mb-3">
+                        <div class="d-flex justify-content-between mt-5 subtitle mb-3">
                             <h4><b>Info Course: </b> Course Summary</h4>
+                            <a href="<?= base_url('course/' . $course['c_id'] . '/edit') ?>" class="btn btn-primary"><i class="fa fa-edit"></i> Edit Course</a>
                         </div>
                         <div class="mb-3 row">
                             <label for="name" class="col-sm-2 col-form-label">Course Name</label>
@@ -97,7 +98,7 @@
                                     <?php foreach ($subchapters as $subchapter) : ?>
                                         <li class="list-group-item d-flex justify-content-between align-items-center"><?= $subchapter['sc_name'] ?>
                                             <div class="d-flex justify-content-start">
-                                                <button class="btn btn-success mx-1" type="button" title="Edit"><i class="fa fa-edit"></i></button>
+                                                <a href="<?= base_url('course/' . $course['c_id'] . '/' . 'detail/' . $subchapter['sc_id'] . '/edit') ?>" class="btn btn-success mx-1" type="button" title="Edit"><i class="fa fa-edit"></i></a>
                                                 <button class="btn btn-danger" type="button" title="Delete" data-bs-toggle="modal" data-bs-backdrop="false" data-bs-target="<?= '#delete_' . str_replace(' ', '_', $subchapter['sc_name']) ?>"><i class="fa fa-trash"></i></button>
                                                 <div class="modal fade text-left" id="<?= 'delete_' . str_replace(' ', '_', $subchapter['sc_name']) ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
                                                     <div class="modal-dialog modal-dialog-scrollable" role="document">

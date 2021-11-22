@@ -64,6 +64,9 @@
                                                     </div>
                                                     <div class="col-md-8 form-group">
                                                         <input class="form-control border border-dark" style="color: black;" oninput="validationForm()" type="text" id="name" name="sc_name" value="<?= old('sc_name') ?>">
+                                                        <?php if (!empty(session()->getFlashdata('error_sc_name'))) : ?>
+                                                            <div class="text-danger"><?= session()->getFlashdata('error_sc_name') ?></div>
+                                                        <?php endif; ?>
                                                     </div>
 
                                                     <div class="col-md-4">
@@ -71,6 +74,13 @@
                                                     </div>
                                                     <div class="col-md-8 form-group">
                                                         <input type="link" class="form-control border border-dark" style="color: black;" oninput="validationForm()" id="video_link" name="sc_video_link" value="<?= old('sc_video_link') ?>">
+                                                        <?php if (!empty(session()->getFlashdata('error_sc_video_link'))) : ?>
+                                                            <div class="text-danger"><?= session()->getFlashdata('error_sc_video_link') ?></div>
+                                                        <?php else : ?>
+                                                            <?php if (!(empty(session()->getFlashdata('error_sc_video_link_2')))) : ?>
+                                                                <div class="text-danger"><?= session()->getFlashdata('error_sc_video_link_2') ?></div>
+                                                            <?php endif ?>
+                                                        <?php endif; ?>
                                                     </div>
 
                                                     <div class="col-md-4">
@@ -78,6 +88,12 @@
                                                     </div>
                                                     <div class="col-md-8 form-group">
                                                         <input type="file" class="border border-dark multiple-files-filepond" multiple style="color: black;" oninput="validationForm()" name="sc_filepath" id="file" accept=".xlsx,.xls,.doc,.docx,.ppt,.pptx,.txt,.pdf">
+                                                        <?php if (!empty(session()->getFlashdata('error_file_1'))) : ?>
+                                                            <div class="text-danger"><?= session()->getFlashdata('error_file_1') ?></div>
+                                                        <?php endif; ?>
+                                                        <?php if (!empty(session()->getFlashdata('error_file_2'))) : ?>
+                                                            <div class="text-danger"><?= session()->getFlashdata('error_file_2') ?></div>
+                                                        <?php endif; ?>
                                                     </div>
 
                                                     <div class="col-md-4">
@@ -85,6 +101,9 @@
                                                     </div>
                                                     <div class="col-md-8 form-group">
                                                         <textarea class="form-control border border-dark" style="color: black;" name="sc_desc" id="desc" cols="30" rows="10"><?= old('sc_desc') ?></textarea>
+                                                        <?php if (!empty(session()->getFlashdata('error_sc_desc'))) : ?>
+                                                            <div class="text-danger"><?= session()->getFlashdata('error_sc_desc') ?></div>
+                                                        <?php endif; ?>
                                                     </div>
                                                     <div class="col-sm-12 d-flex justify-content-end">
                                                         <button class="btn btn-primary" type="submit">Save</button>
