@@ -52,39 +52,53 @@
                             <div class="mb-3 col-md-9 mx-auto">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4 class="card-title" style="color: black;">Course 2: New Chapter</h4>
+                                        <h4 class="card-title" style="color: black;"><?= $course['c_name'] ?>: Edit Chapter</h4>
                                     </div>
                                     <div class="card-content">
                                         <div class="card-body">
 
-                                            <form action="<?= base_url('course/' . $c_id . '/detail/add') ?>" method="post" enctype="multipart/form-data">
+                                            <form action="<?= base_url('course/' . $course['c_id'] . '/' . 'detail/' . $subchapter['sc_id'] . '/update') ?>" method="post" enctype="multipart/form-data">
                                                 <div class="row">
                                                     <div class="col-md-4">
                                                         <label for="name" style="color: black;"><b>Chapter Name :</b></label>
                                                     </div>
                                                     <div class="col-md-8 form-group">
-                                                        <input class="form-control border border-dark" style="color: black;" oninput="validationForm()" type="text" id="name" name="sc_name" value="<?= old('sc_name') ?>">
+                                                        <input class="form-control border border-dark" style="color: black;" oninput="validationForm()" type="text" id="name" name="sc_name" value="<?= !empty(old('sc_name')) ? old('sc_name') : $subchapter['sc_name'] ?>">
+                                                        <?php if (!empty(session()->getFlashdata('error_sc_name'))) : ?>
+                                                            <div class="text-danger"><?= session()->getFlashdata('error_sc_name') ?></div>
+                                                        <?php endif; ?>
                                                     </div>
 
                                                     <div class="col-md-4">
                                                         <label for="video_link" style="color: black;"><b>Video Link :</b></label>
                                                     </div>
                                                     <div class="col-md-8 form-group">
-                                                        <input type="link" class="form-control border border-dark" style="color: black;" oninput="validationForm()" id="video_link" name="sc_video_link" value="<?= old('sc_video_link') ?>">
+                                                        <input type="link" class="form-control border border-dark" style="color: black;" oninput="validationForm()" id="video_link" name="sc_video_link" value="<?= !empty(old('sc_video_link')) ? old('sc_video_link') : $subchapter['sc_video_link'] ?>">
+                                                        <?php if (!empty(session()->getFlashdata('error_sc_video_link'))) : ?>
+                                                            <div class="text-danger"><?= session()->getFlashdata('error_sc_video_link') ?></div>
+                                                        <?php endif; ?>
                                                     </div>
 
                                                     <div class="col-md-4">
                                                         <label for="file" style="color: black;"><b>Upload File :</b></label>
                                                     </div>
                                                     <div class="col-md-8 form-group">
+                                                        <p>File Sebelumnya: <?= $subchapter['sc_filepath'] ?> </p>
+                                                        <a href="<?= base_url('uploads/' . $course['c_id'] . '/' . $subchapter['sc_id'] . '/' . $subchapter['sc_filepath']) ?>" target="_blank" rel="noopener noreferrer">Click to download</a><br>
                                                         <input type="file" class="border border-dark multiple-files-filepond" multiple style="color: black;" oninput="validationForm()" name="sc_filepath" id="file" accept=".xlsx,.xls,.doc,.docx,.ppt,.pptx,.txt,.pdf">
+                                                        <?php if (!empty(session()->getFlashdata('error_file_1'))) : ?>
+                                                            <div class="text-danger"><?= session()->getFlashdata('error_file_1') ?></div>
+                                                        <?php endif; ?>
                                                     </div>
 
                                                     <div class="col-md-4">
                                                         <label for="desc" style="color: black;"><b>Description :</b></label>
                                                     </div>
                                                     <div class="col-md-8 form-group">
-                                                        <textarea class="form-control border border-dark" style="color: black;" name="sc_desc" id="desc" cols="30" rows="10"><?= old('sc_desc') ?></textarea>
+                                                        <textarea class="form-control border border-dark" style="color: black;" name="sc_desc" id="desc" cols="30" rows="10"><?= !empty(old('sc_desc')) ? old('sc_desc') : $subchapter['sc_desc'] ?></textarea>
+                                                        <?php if (!empty(session()->getFlashdata('error_sc_desc'))) : ?>
+                                                            <div class="text-danger"><?= session()->getFlashdata('error_sc_desc') ?></div>
+                                                        <?php endif; ?>
                                                     </div>
                                                     <div class="col-sm-12 d-flex justify-content-end">
                                                         <button class="btn btn-primary" type="submit">Save</button>
