@@ -1,24 +1,61 @@
 <?php
 
 //untuk keperluan card homepage pelajar
-function displayCard($title="judul", $content="content", $picture="/assets/images/samples/banana.jpg", $anchor= "#", $anchorName="START COURSE"){
-    if (strlen($content)>63){
-        $deskripsi = substr($content, 0, 60);
+function displayCard($title="judul", $content="content", $start, $picture="/assets/images/samples/banana.jpg", $anchor= "#"){
+    if (strlen($content)>50){
+        $deskripsi = substr($content, 0, 50);
         $deskripsi .= "...";
     }else{
         $deskripsi = $content;
+    }
+    $btnText = "CONTINUE COURSE";
+    if ($start==NULL){
+        $btnText = "START COURSE";
     }
     echo '
     <div class="card" style="max-width: 20rem; max-height: 25rem;">
         <div class="card-content">
             <img class="img-fluid w-100" src="'.$picture.'" alt="image">
-            <div class="card-body">
-                <h4 class="card-title">'.$title.'</h4>
-                <p class="card-text">
-                    '.$deskripsi.'
-                </p>
-                <a href="'.$anchor.'">'.$anchorName.'</a>
-            </div>
+        </div>
+        <div class="card-body">
+            <h4 class="card-title">'.$title.'</h4>
+            <p class="card-text">
+                '.$deskripsi.'
+            </p>
+            <a href="'.$anchor.'"> '.$btnText.' </a>
+        </div>
+    </div>
+    ';
+}
+
+//untuk keperluan card homepage mentor
+function displayMentorCard($title="judul", $content="content", $published=null, $picture="/assets/images/samples/banana.jpg", $anchor= "#"){
+    if (strlen($content)>50){
+        $deskripsi = substr($content, 0, 50);
+        $deskripsi .= "...";
+    }else{
+        $deskripsi = $content;
+    }
+    $publish = "Published";
+    if ($published == NULL){
+        $publish = "Unpublished";
+    }
+    echo '
+    <div class="card" style="max-width: 20rem; max-height: 25rem;">
+        <div class="card-content style: "position: relative;">
+            <img class="img-fluid w-100" src="'.$picture.'" alt="image">
+            <span 
+            style="position: absolute; 
+            bottom: 0px; right: 0px; 
+            background: #3C64B1;
+            opacity: 0.5; color: white; 
+            padding-left: 16px; padding-right: 16px;">'.$publish.'</span>
+        </div>
+        <div class="card-body">
+            <h4 class="card-title">'.$title.'</h4>
+            <p class="card-text">
+                '.$deskripsi.'
+            </p>
         </div>
     </div>
     ';

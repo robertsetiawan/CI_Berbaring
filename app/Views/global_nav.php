@@ -8,6 +8,7 @@ if (!$session->get('is_logged_in')){
     $learnings = '/homepage/pelajar/1';
 }*/
 $learnings = '/homepage/pelajar/1';
+$mentor = 'homepage/mentor';
 ?>
 <div id="header" class="layout-horizontal">
     <header class="mb-5">
@@ -29,13 +30,13 @@ $learnings = '/homepage/pelajar/1';
                     </li>
 
                     <li class="menu-item ">
-                        <a href="#" class='menu-link'>
+                        <a href="<?= base_url('/')?>" class='menu-link'>
                             <span>Home</span>
                         </a>
                     </li>
 
                     <li class="menu-item">
-                        <a href="#" class='menu-link'>
+                        <a href="<?= base_url($mentor)?>" class='menu-link'>
                             <span>Be a Mentor</span>
                         </a>
                     </li>
