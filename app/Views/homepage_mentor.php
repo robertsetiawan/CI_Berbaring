@@ -1,6 +1,6 @@
 <?php
 //untuk keperluan card homepage mentor
-function displayMentorCard($title="judul", $content="content", $published, $picture="/assets/images/samples/banana.jpg", $anchor= "#"){
+function displayMentorCard($title="judul", $content="content", $published, $anchor, $picture="/assets/images/samples/banana.jpg"){
     if (strlen($content)>50){
         $deskripsi = substr($content, 0, 50);
         $deskripsi .= "...";
@@ -23,7 +23,7 @@ function displayMentorCard($title="judul", $content="content", $published, $pict
             padding-left: 16px; padding-right: 16px;">'.$publish.'</span>
         </div>
         <div class="card-body">
-            <h4 class="card-title">'.$title.'</h4>
+            <h4 class="card-title"><a href='.base_url('/course'.'/'.$anchor.'/info').'>'.$title.'</a></h4>
             <p class="card-text">
                 '.$deskripsi.'
             </p>
@@ -63,7 +63,7 @@ function displayMentorCard($title="judul", $content="content", $published, $pict
             <div class="content-wrapper container"> 
                 <div class="page-heading">
                     <h4>Create New Course</h4>
-                </div>
+                </div>  
                 
                 <div class="page-content">
                     <section class="row d-flex">
@@ -79,7 +79,7 @@ function displayMentorCard($title="judul", $content="content", $published, $pict
                         <?php
                         //created course
                         foreach ($courses as $course){
-                            displayMentorCard($course['c_name'], $course['c_desc'], $course['published_date']);
+                            displayMentorCard($course['c_name'], $course['c_desc'], $course['published_date'], $course['c_id']);
                         }
                         ?>
                     </section>
