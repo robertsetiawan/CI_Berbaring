@@ -120,11 +120,95 @@ class Course extends BaseController
         return view('info_course', $data);
     }
 
+
     public function search()
     {
         $cc_name = $this->request->getPost('query');
         $data['course'] = $this->courses->searchc($cc_name);
         return view('search_course', $data);
         // return dd($data);
+      
+    public function edit($c_id)
+    {
+        $data['course'] = $this->courses->where('c_id', $c_id)->first();
+        $data['categories'] = $this->categories->findAll();
+        return view('edit_course', $data);
+    }
+
+    public function update($c_id)
+    {
+        $validation = \Config\Services::validation();
+
+        $validation->setRules($this->courses->validationRules, $this->courses->errorMessage);
+
+        $isValid = $validation->withRequest($this->request)->run();
+
+        $isPaidCourse = $this->request->getPost('paid_check'); //0 = false, 1 = true
+
+        if ($isPaidCourse != null) { //validasi paid check
+
+            if ($isPaidCourse && $this->request->getPost('c_price') < 1) {
+                session()->setFlashdata('error_c_price', 'Harga Course harus lebih dari 0');
+
+                $isValid = false;
+            }
+        } else {
+            session()->setFlashdata('error_paid_check', 'Jenis Course harus ditentukan!');
+
+            $isValid = false;
+        }
+
+        if ($this->request->getFile('course_picture')->isValid()) {
+            if (!$this->validate([
+                'course_picture' => [
+                    'rules' => 'uploaded[course_picture]|mime_in[course_picture,image/jpg,image/jpeg,image/png]|max_size[course_picture,2048]',
+                    'errors' => [
+                        'uploaded' => 'Harus Ada File yang diupload',
+                        'mime_in' => 'Format File Harus Berupa jpg,jpeg,png',
+                        'max_size' => 'Ukuran File Maksimal 2 MB'
+                    ]
+                ]
+            ])) {
+
+                session()->setFlashdata('error_course_picture_1', $this->validator->getError('course_picture'));
+
+                $isValid = false;
+            }
+
+
+            if ($isValid) {
+
+                $file = $this->request->getFile('course_picture');
+
+                $fileName = $file->getRandomName();
+
+                $file->move(ROOTPATH . 'public/uploads/' . $c_id, $fileName);
+
+                $data['c_name'] = $this->request->getPost('c_name');
+                $data['c_desc'] = $this->request->getPost('c_desc');
+                $data['c_price'] = ($isPaidCourse) ? $this->request->getPost('c_price') : 0;
+                $data['c_imagepath'] = $fileName;
+                $data['category_id'] = $this->request->getPost('category_id');
+
+                $this->courses->update($c_id, $data);
+
+                return redirect()->to(base_url('course/' . $c_id . '/info'));
+            }
+        } else {
+            if ($isValid) {
+                $data['c_name'] = $this->request->getPost('c_name');
+                $data['c_desc'] = $this->request->getPost('c_desc');
+                $data['c_price'] = ($isPaidCourse) ? $this->request->getPost('c_price') : 0;
+                $data['category_id'] = $this->request->getPost('category_id');
+
+                $this->courses->update($c_id, $data);
+
+                return redirect()->to(base_url('course/' . $c_id . '/info'));
+            }
+        }
+
+        $this->generateErrorToView($validation);
+
+        return redirect()->back()->withInput();
     }
 }
