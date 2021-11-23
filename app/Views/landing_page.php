@@ -31,6 +31,7 @@ $learnings = '/homepage/pelajar/1';
     <link rel="stylesheet" href="/assets/css/app.css">
     <link rel="shortcut icon" href="/assets/images/favicon.svg" type="image/x-icon">
     <link rel="stylesheet" href="/assets/css/landing.css">
+    <link rel="stylesheet" href="/assets/css/card.css">
 </head>
 
 <body>
@@ -152,7 +153,7 @@ $learnings = '/homepage/pelajar/1';
                                             <img src="assets/images/faces/salma.png" class="card-comment" alt="">
                                         </div>
                                         <div style="padding-top:12px">
-                                            <h5 class="card-title">Salma Safira</h5>
+                                            <h5 class="card-title">Safira Sama Rahma</h5>
                                             <p class="card-text">Machine Learning: Image Classification</p>
                                             <p class="card-text" style="padding-top: 8px;">"Machine Learning sangat menyenangkan"</p>
                                         </div>
@@ -186,7 +187,8 @@ $learnings = '/homepage/pelajar/1';
                 </div>
             </div>
         </div>
-        <footer>
+        <?php include('footer.php') ?>
+        <!-- <footer>
             <div class="container">
                 <div class="footer clearfix mb-0 text-muted">
                     <div class="float-start">
@@ -197,7 +199,7 @@ $learnings = '/homepage/pelajar/1';
                     </div>
                 </div>
             </div>
-        </footer>
+        </footer> -->
     </div>
 
     <script src="/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
