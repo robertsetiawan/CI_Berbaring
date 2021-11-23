@@ -52,4 +52,13 @@ class CourseModel extends Model
 
         return $query->getRowArray();
     }
+
+    public function searchc($c_name){
+        $query = $this->db->query('SELECT * FROM course c 
+        INNER JOIN mentor_activity m ON c.c_id = m.c_id 
+        INNER JOIN user u ON m.user_id = u.user_id 
+        WHERE c.c_name LIKE "%'. $c_name . '%"');
+
+        return $query->getResultArray();
+    }
 }

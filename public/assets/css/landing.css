@@ -17,6 +17,7 @@
     border-radius: .7rem;
 }
 
+/* Untuk button sing up di bawah */
 .signup{
     flex-direction: column;
     justify-content: center;

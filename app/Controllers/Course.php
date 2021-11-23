@@ -89,7 +89,7 @@ class Course extends BaseController
 
             $c_id = (int)round(gettimeofday(true));
 
-            $file->move(ROOTPATH . 'public/uploads/' .$c_id, $fileName);
+            $file->move(ROOTPATH . 'public/uploads/' . $c_id, $fileName);
 
             $db = db_connect();
 
@@ -102,7 +102,7 @@ class Course extends BaseController
 
             $this->courses->saveCourse($c_id, $c_name, $c_imagepath, $c_desc, $c_price, $category_id, $user_id);
 
-            return redirect()->to(base_url('course/'. $c_id. '/info'));
+            return redirect()->to(base_url('course/' . $c_id . '/info'));
         } else {
             $this->generateErrorToView($validation);
 
@@ -118,5 +118,13 @@ class Course extends BaseController
         $data['course'] = $this->courses->info($c_id);
         $data['subchapters'] = $subchapters->where('c_id', $c_id)->findAll();
         return view('info_course', $data);
+    }
+
+    public function search()
+    {
+        $cc_name = $this->request->getPost('query');
+        $data['course'] = $this->courses->searchc($cc_name);
+        return view('search_course', $data);
+        // return dd($data);
     }
 }

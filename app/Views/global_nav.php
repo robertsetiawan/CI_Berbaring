@@ -47,9 +47,10 @@ $learnings = '/homepage/pelajar/1';
                     </li>
 
                     <li class="menu-item w-25">
-                        <form method="GET">
+                        <form action="<?= base_url('/search'); ?>" method="POST">
+                            <!-- getGet('search') -->
                             <div class="form-group position-relative has-icon-left">
-                                <input type="text" class="form-control" placeholder="Search ">
+                                <input name="query" type="text" class="form-control" placeholder="Search ">
                                 <div class="form-control-icon">
                                     <i class="bi bi-search"></i>
                                 </div>

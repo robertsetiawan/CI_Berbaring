@@ -70,7 +70,7 @@
                             <div class="mb-3 row">
                                 <label for="price" class="col-sm-2 col-form-label">Price</label>
                                 <div class="col-sm-10">
-                                    <p><?= 'Rp ' . $course['c_price'] ?></p>
+                                    <p><?= 'Rp'. number_format($course['c_price'], 0, ',', '.') ?></p>
                                 </div>
                             </div>
                         <?php endif ?>
@@ -84,7 +84,7 @@
 
                         <div class="d-flex justify-content-between mt-5 mb-3">
                             <h4><b>Course Content</h4>
-                            <a href="<?= base_url('course/' . $course['c_id'] . '/detail') ?>" class="btn btn-primary">Add Course</a>
+                            <a href="<?= base_url('course/' . $course['c_id'] . '/detail') ?>" class="btn btn-primary">Add Chapter</a>
                         </div>
 
                         <div class="card">
@@ -110,7 +110,7 @@
                                                             </div>
                                                             <div class="modal-body">
                                                                 <p>
-                                                                    Apa anda yakin untuk menghapus chapter ini?<br>
+                                                                    Apa Anda yakin untuk menghapus chapter ini?<br>
                                                                 </p>
                                                             </div>
                                                             <div class="modal-footer">
