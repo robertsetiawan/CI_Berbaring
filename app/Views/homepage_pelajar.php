@@ -12,9 +12,10 @@ function displayCard($title="judul", $content="content", $start, $anchor= "#", $
         $btnText = "START COURSE";
     }
     echo '
+    <div class="col">
     <div class="card" style="max-width: 20rem; max-height: 25rem;">
-        <div class="card-content">
-            <img class="img-fluid w-100" src="'.$picture.'" alt="image">
+        <div class="card-content style: \'position: relative;\'">
+            <img class="card-img-top img-fluid" src="'.$picture.'" alt="image" style= "object-fit: cover; height: 12vw">
         </div>
         <div class="card-body">
             <h4 class="card-title">'.$title.'</h4>
@@ -23,6 +24,7 @@ function displayCard($title="judul", $content="content", $start, $anchor= "#", $
             </p>
             <a href="'.$anchor.'"> '.$btnText.' </a>
         </div>
+    </div>
     </div>
     ';
 }
@@ -61,7 +63,7 @@ function displayCard($title="judul", $content="content", $start, $anchor= "#", $
                 </div>
                 
                 <div class="page-content">
-                    <section class="row d-flex">
+                    <section class="row row-cols-3 row-cols-md-4 g-4">
                         <?php
                         
                         $page = (int)$page;
