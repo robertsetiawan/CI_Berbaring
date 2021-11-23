@@ -127,6 +127,7 @@ class Course extends BaseController
         $data['course'] = $this->courses->searchc($cc_name);
         return view('search_course', $data);
         // return dd($data);
+    }
       
     public function edit($c_id)
     {

@@ -71,38 +71,7 @@ function displayCard($title="judul", $content="content", $start, $anchor= "#", $
                             displayCard($course['title'], $course['content'], $course['started_date']);
                         }
                         ?>
-                        <div class="container d-flex justify-content-center">
-                            <!-- unnecessarily complicated numbering stuff -->
-                            <table>
-                                <tr>
-                                    <?php if ($page!=1):?>
-                                        <td><a href="<?= base_url('/homepage/pelajar/'.($page-1))?>"><<</a></td>
-                                    <?php endif ?>
-                                    <td></td>
-                                    <?php if ($page==1):?>
-                                        <td>1</td>
-                                    <?php else: ?>
-                                        <td><a href="<?= base_url('/homepage/pelajar/1')?>">1</a></td>
-                                        <?php if ($page*4 <= $totalCourses):?>
-                                            <td>...</td>
-                                        <?php endif?>
-                                    <?php endif ?>
-                                    <td></td>
-                                    <?php $counter = $page?>
-                                    <?php while($counter*4 <= $totalCourses and $counter<=6): ?>
-                                        <td><a href="<?= base_url('/homepage/pelajar/'.($counter+1))?>"><?= $counter+1 ?></a></td>
-                                        <td></td>
-                                        <?php $counter++ ?>
-                                    <?php endwhile ?>
-                                    <td></td>
-                                    <?php if (count($courses)==4 and count($courses)>3) :?>
-                                        <td><a href="<?= base_url('/homepage/pelajar/'.($page+1))?>">>></a></td>
-                                    <?php endif?>
-                                </tr>
-                            </table>
-                            <!-- unnecessarily complicated numbering stuff -->
-                            
-                        </div>
+                        
                         <!--
                         <div class="col-12 col-lg-9">
                             <div class="row">
@@ -363,6 +332,40 @@ function displayCard($title="judul", $content="content", $start, $anchor= "#", $
                             </div>
                         </div>-->
                     </section>
+                    <div class="row d-flex">
+                        <div class="container d-flex justify-content-center">
+                            <!-- unnecessarily complicated numbering stuff -->
+                            <table>
+                                <tr>
+                                    <?php if ($page!=1):?>
+                                        <td><a href="<?= base_url('/homepage/pelajar/'.($page-1))?>"><<</a></td>
+                                    <?php endif ?>
+                                    <td></td>
+                                    <?php if ($page==1):?>
+                                        <td>1</td>
+                                    <?php else: ?>
+                                        <td><a href="<?= base_url('/homepage/pelajar/1')?>">1</a></td>
+                                        <?php if ($page*4 <= $totalCourses):?>
+                                            <td>...</td>
+                                        <?php endif?>
+                                    <?php endif ?>
+                                    <td></td>
+                                    <?php $counter = $page?>
+                                    <?php while($counter*4 <= $totalCourses and $counter<=6): ?>
+                                        <td><a href="<?= base_url('/homepage/pelajar/'.($counter+1))?>"><?= $counter+1 ?></a></td>
+                                        <td></td>
+                                        <?php $counter++ ?>
+                                    <?php endwhile ?>
+                                    <td></td>
+                                    <?php if (count($courses)==4 and count($courses)>3) :?>
+                                        <td><a href="<?= base_url('/homepage/pelajar/'.($page+1))?>">>></a></td>
+                                    <?php endif?>
+                                </tr>
+                            </table>
+                            <!-- unnecessarily complicated numbering stuff -->
+                            
+                        </div>
+                    </div>
                 </div>
             </div>
 
