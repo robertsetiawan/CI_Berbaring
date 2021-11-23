@@ -1,5 +1,33 @@
 <?php
-require 'card.php';
+//untuk keperluan card homepage pelajar
+function displayCard($title="judul", $content="content", $start, $anchor= "#", $picture="/assets/images/samples/banana.jpg"){
+    if (strlen($content)>50){
+        $deskripsi = substr($content, 0, 50);
+        $deskripsi .= "...";
+    }else{
+        $deskripsi = $content;
+    }
+    $btnText = "CONTINUE COURSE";
+    if ($start==NULL){
+        $btnText = "START COURSE";
+    }
+    echo '
+    <div class="col">
+    <div class="card" style="max-width: 20rem; max-height: 25rem;">
+        <div class="card-content style: \'position: relative;\'">
+            <img class="card-img-top img-fluid" src="'.$picture.'" alt="image" style= "object-fit: cover; height: 12vw">
+        </div>
+        <div class="card-body">
+            <h4 class="card-title">'.$title.'</h4>
+            <p class="card-text">
+                '.$deskripsi.'
+            </p>
+            <a href="'.$anchor.'"> '.$btnText.' </a>
+        </div>
+    </div>
+    </div>
+    ';
+}
 
 ?>
 <!DOCTYPE html>
@@ -35,12 +63,12 @@ require 'card.php';
                 </div>
                 
                 <div class="page-content">
-                    <section class="row d-flex">
+                    <section class="row row-cols-3 row-cols-md-4 g-4">
                         <?php
                         
                         $page = (int)$page;
                         foreach ($courses as $course){
-                            displayCard($course['title'], $course['content']);
+                            displayCard($course['title'], $course['content'], $course['started_date']);
                         }
                         ?>
                         <div class="container d-flex justify-content-center">
