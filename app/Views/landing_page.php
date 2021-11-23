@@ -1,15 +1,27 @@
+<?php
+$session = session();
+//anchor My Learnings berubah bila sudah login
+/* sudah pakai filters
+if (!$session->get('is_logged_in')){
+    $learnings = '/login';
+}else{
+    $learnings = '/homepage/pelajar/1';
+}*/
+$learnings = '/homepage/pelajar/1';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PERPUS</title>
-    
+    <title>Berbaring | Landing Page</title>
+
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/bootstrap.css">
-    
+
     <link rel="stylesheet" href="/assets/vendors/iconly/bold.css">
     <link rel="stylesheet" href="/assets/vendors/jquery-datatables/jquery.dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="/assets/vendors/fontawesome/all.min.css">
@@ -18,6 +30,8 @@
     <link rel="stylesheet" href="/assets/vendors/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="/assets/css/app.css">
     <link rel="shortcut icon" href="/assets/images/favicon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="/assets/css/landing.css">
+    <link rel="stylesheet" href="/assets/css/card.css">
 </head>
 
 <body>
@@ -25,44 +39,172 @@
         <!--pastiin include global nav di semua page! -->
         <?php include('global_nav.php'); ?>
         <div id="main" class="layout-horizontal">
-
-            <div class="content-wrapper container">
-                
+            <header id="showcase">
+                <h1 style="color:white">Chin up, straight back, let's study with all our might</h1>
+                <p style="color:white; font-size:18px">Dengan berbaring, Anda dapat mempelajari berbagai skill secara terorganisir.</p>
+                <a href="#" class="btn btn-success">Start Now</a>
+            </header>
+            <div class="content-wrapper container" style="padding-top: 60px;">
                 <div class="page-heading">
-                    <!--<h3>Popular Books</h3>-->
+                    <h3>Recommended For You</h3>
                 </div>
                 <div class="page-content">
                     <!-- Basic Tables start -->
-                    <section class="section">
-                        <div class="card">
-                            <div class="card-header d-flex justify-content-between">
-                                <h4>Placeholder wkwk</h4>
+                    <section class="content-types">
+                        <div class="row row-cols-3 row-cols-md-4 g-4">
+                            <div class="col">
+                                <a href="#">
+                                    <div class="card h-90">
+                                        <div class="card-content">
+                                            <img src="/assets/images/courses/css1.jpg" class="card-img-top img-fluid" alt="">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Judul</h5>
+                                                <p class="card-text">Nama Mentor</p>
+                                            </div>
+                                            <div class="card-footer border-0">
+                                                <h6 class="card-text" style="color:#409CA6">Rp 80.000</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col">
+                                <a href="#">
+                                    <div class="card h-90">
+                                        <div class="card-content">
+                                            <img src="/assets/images/courses/css2.png" class="card-img-top img-fluid" alt="">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Judul</h5>
+                                                <p class="card-text">Nama Mentor</p>
+                                            </div>
+                                            <div class="card-footer border-0">
+                                                <h6 class="card-text" style="color:#409CA6">Rp 80.000</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col">
+                                <a href="#">
+                                    <div class="card h-90">
+                                        <div class="card-content">
+                                            <img src="/assets/images/courses/frontback.jpg" class="card-img-top img-fluid" alt="">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Judul</h5>
+                                                <p class="card-text">Nama Mentor</p>
+                                            </div>
+                                            <div class="card-footer border-0">
+                                                <h6 class="card-text" style="color:#409CA6">Rp 80.000</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col">
+                                <a href="#">
+                                    <div class="card h-90">
+                                        <div class="card-content">
+                                            <img src="/assets/images/courses/ml1.jpg" class="card-img-top img-fluid" alt="">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Judul</h5>
+                                                <p class="card-text">Nama Mentor</p>
+                                            </div>
+                                            <div class="card-footer border-0">
+                                                <h6 class="card-text" style="color:#409CA6">Rp 80.000</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
                             </div>
                         </div>
-
                     </section>
                 </div>
-
             </div>
 
-            <footer>
-                <div class="container">
-                    <div class="footer clearfix mb-0 text-muted">
-                        <div class="float-start">
-                            <p>2021 &copy; Mazer</p>
+            <div class="content-wrapper container" style="padding-top: 60px;">
+                <div class="page-heading">
+                    <h3>What do people say?</h3>
+                </div>
+                <div class="page-content">
+                    <section class="content-types">
+                        <div class="row row-cols-3 row-cols-md-3 g-4">
+                            <div class="col">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div>
+                                            <img src="assets/images/faces/yuri.png" class="card-comment" alt="">
+                                        </div>
+                                        <div style="padding-top:12px">
+                                            <h5 class="card-title">Yuri Edit</h5>
+                                            <p class="card-text">How to Hack Google by Using CSS</p>
+                                            <p class="card-text" style="padding-top: 8px;">"Saya jadi lebih paham bagaimana menggunakan Flutter dan back-end Laravel!"</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div>
+                                            <img src="assets/images/faces/salma.png" class="card-comment" alt="">
+                                        </div>
+                                        <div style="padding-top:12px">
+                                            <h5 class="card-title">Safira Sama Rahma</h5>
+                                            <p class="card-text">Machine Learning: Image Classification</p>
+                                            <p class="card-text" style="padding-top: 8px;">"Machine Learning sangat menyenangkan"</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div>
+                                            <img src="assets/images/faces/aziz.png" class="card-comment" alt="">
+                                        </div>
+                                        <div style="padding-top:12px">
+                                            <h5 class="card-title">Ahmad Bustanul Aziz</h5>
+                                            <p class="card-text">Complete C# Unity Game Tester</p>
+                                            <p class="card-text" style="padding-top: 8px;">"Daftar Berbaring karena e-learning kampus sering down"</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="float-end">
-                            <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a
-                                    href="http://ahmadsaugi.com">A. Saugi</a></p>
-                        </div>
+                    </section>
+                </div>
+            </div>
+            <div class="content-wrapper container" style="padding-top: 60px; padding-bottom: 60px;">
+                <h1 style="color:black; text-align:center">Are you a new member?</h1>
+                <p style="color:black; font-size:32px; text-align:center">We are here, so you don’t need to worry about your future</p>
+                <div class="signup">
+                    <a href="#" class="btn btn-success">Sign Up and Get a Free Course</a>
+                </div>
+            </div>
+        </div>
+        <?php include('footer.php') ?>
+        <!-- <footer>
+            <div class="container">
+                <div class="footer clearfix mb-0 text-muted">
+                    <div class="float-start">
+                        <p>2021 &copy; Mazer</p>
+                    </div>
+                    <div class="float-end">
+                        <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a href="http://ahmadsaugi.com">A. Saugi</a></p>
                     </div>
                 </div>
-            </footer>
-        </div>
+            </div>
+        </footer> -->
     </div>
+
     <script src="/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="/assets/js/bootstrap.bundle.min.js"></script>
-    
+
     <script src="/assets/vendors/apexcharts/apexcharts.js"></script>
     <script src="/assets/js/pages/dashboard.js"></script>
 

@@ -1,0 +1,27 @@
+
+#showcase{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../images/bg/landing.jpg');
+    background-size: cover;
+    background-position: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    height: 100vh;
+}
+
+.card-comment{
+    width: 84px;
+    height: 84px;
+    border-radius: .7rem;
+}
+
+/* Untuk button sing up di bawah */
+.signup{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display: flex;
+}

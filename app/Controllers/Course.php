@@ -120,6 +120,14 @@ class Course extends BaseController
         return view('info_course', $data);
     }
 
+
+    public function search()
+    {
+        $cc_name = $this->request->getPost('query');
+        $data['course'] = $this->courses->searchc($cc_name);
+        return view('search_course', $data);
+        // return dd($data);
+      
     public function edit($c_id)
     {
         $data['course'] = $this->courses->where('c_id', $c_id)->first();
