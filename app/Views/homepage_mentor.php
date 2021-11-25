@@ -55,6 +55,11 @@ function displayMentorCard($title="judul", $content="content", $published, $anch
     <link rel="stylesheet" href="/assets/vendors/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="/assets/css/app.css">
     <link rel="shortcut icon" href="/assets/images/favicon.svg" type="image/x-icon">
+    <style>
+        footer {
+            position: relative; bottom: 0; width: 100%; margin-top: 200px;
+        }
+    </style>
 </head>
 
 <body>
@@ -63,6 +68,7 @@ function displayMentorCard($title="judul", $content="content", $published, $anch
         <?php include('global_nav.php'); ?>
         <div id="main" class="layout-horizontal">
             <div class="content-wrapper container"> 
+                <br>
                 <div class="page-heading">
                     <h4>Create New Course</h4>
                 </div>  
@@ -89,21 +95,8 @@ function displayMentorCard($title="judul", $content="content", $published, $anch
                     </section>
                 </div>
             </div>
-
-            <footer>
-                <div class="container">
-                    <div class="footer clearfix mb-0 text-muted">
-                        <div class="float-start">
-                            <p>2021 &copy; Mazer</p>
-                        </div>
-                        <div class="float-end">
-                            <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a
-                                    href="http://ahmadsaugi.com">A. Saugi</a></p>
-                        </div>
-                    </div>
-                </div>
-            </footer>
         </div>
+        <?php include('footer.php') ?>
     </div>
     <script src="/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="/assets/js/bootstrap.bundle.min.js"></script>
