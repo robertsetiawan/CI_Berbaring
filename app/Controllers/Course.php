@@ -212,4 +212,9 @@ class Course extends BaseController
 
         return redirect()->back()->withInput();
     }
+
+    public function course_page($c_id)
+    {
+        return view('course_learning_page.php');
+    }
 }
