@@ -50,7 +50,7 @@ $learnings = '/homepage/pelajar/1';
                     <section class="row">
                         <!-- yang kiri -->
                         <div class="col-12 col-lg-9">
-                            <h4 class="m-3">JUDUL COURSE</h4>
+                            <h4 class="m-3"><?= $course['c_name'] ?></h4>
                             <div class="row">
                                 <div class="col-6 col-lg-4 col-md-6">
                                     <div class="card" style="max-width: 20rem; max-height: 25rem;">
@@ -58,11 +58,26 @@ $learnings = '/homepage/pelajar/1';
                                             <img class="card-img-top img-fluid" src="/assets/images/samples/banana.jpg" alt="image" style= "object-fit: cover; height: 12vw">
                                         </div>
                                         <div class="card-body">
-                                            <h4 class="card-title">JUDUL COURSE</h4>
+                                            <h4 class="card-title"><?= $course['c_name'] ?></h4>
                                             <p class="card-text">
-                                                dasodnosaindoasd
+                                                <?php 
+                                                $content = $course['c_desc'];
+                                                if (strlen($content)>50){
+                                                    $content = substr($content, 0, 50);
+                                                    $content .= "...";
+                                                }
+                                                echo $content;
+                                                ?>
                                             </p>
-                                            <a href="'.$anchor.'"> harga </a>
+                                            <a href="'.$anchor.'"> 
+                                                <?php
+                                                    if ($course['c_price']==0){
+                                                        echo "FREE";
+                                                    }else{
+                                                        echo $course['c_price'];
+                                                    }
+                                                ?> 
+                                             </a>
                                         </div>
                                     </div>
                                 </div>
@@ -83,8 +98,7 @@ $learnings = '/homepage/pelajar/1';
                                 <div class="col-12">
                                     <h4>Description</h4>
                                     <div>
-                                        <p>deskripsideskripsideskripsideskripsideskripsideskripsideskripsidesk
-                                            ripsideskripsideskripsideskripsideskripsideskripsideskripsideskripsideskripsideskripsi</p>
+                                        <p><?= $course['c_desc'] ?></p>
                                     </div>
                                 </div>
                             </div>
@@ -105,34 +119,18 @@ $learnings = '/homepage/pelajar/1';
                             <h4 class="m-3">Chapter</h4>
                             <div class="card">
                                 <div class="row m-2">
-                                    <div class="d-flex align-items-center">
-                                        <i class="bi bi-lock"></i>
-                                        <span>Chapter 1: Introduction</span>
-                                    </div>
-                                    <div class="d-flex align-items-center">
-                                        <i class="bi bi-lock"></i>
-                                        <span>Chapter 2: IDE Setup</span>
-                                    </div>
-                                    <div class="d-flex align-items-center">
-                                        <i class="bi bi-lock"></i>
-                                        <span>Chapter 3: IDE Setup</span>
-                                    </div>
-                                    <div class="d-flex align-items-center">
-                                        <i class="bi bi-lock"></i>
-                                        <span>Chapter 4: IDE Setup</span>
-                                    </div>
-                                    <div class="d-flex align-items-center">
-                                        <i class="bi bi-lock"></i>
-                                        <span>Chapter 5: IDE Setup</span>
-                                    </div>
-                                    <div class="d-flex align-items-center">
-                                        <i class="bi bi-lock"></i>
-                                        <span>Chapter 6: IDE Setup</span>
-                                    </div>
-                                    <div class="d-flex align-items-center">
-                                        <i class="bi bi-lock"></i>
-                                        <span>Chapter 7: IDE Setup</span>
-                                    </div>
+                                    <?php
+                                    $count = 0;
+                                    foreach ($chapters as $chapter){
+                                        $count++;
+                                        echo '
+                                        <div class="d-flex align-items-center">
+                                            <i class="bi bi-lock"></i>
+                                            <span>Chapter '.$count.': '.$chapter['sc_name'].'</span>
+                                        </div>
+                                        ';
+                                    }
+                                    ?>
                                 </div>
                             </div>
                         </div>
