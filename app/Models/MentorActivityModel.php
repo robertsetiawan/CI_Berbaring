@@ -15,6 +15,11 @@ class MentorActivityModel extends Model{
     public $errorMessage = [
 
     ];
+  
+    public function getCouserCreatorId($c_id)
+    {
+        return $this->db->query('SELECT user_id FROM mentor_activity WHERE c_id=' .$c_id)->getRow();
+    }
 
     public function getUserMentorActivity($uid)
     {

@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\CategoryModel;
 use App\Models\CourseModel;
+use App\Models\MentorActivityModel;
 use App\Models\SubchapterModel;
 
 class Course extends BaseController
@@ -116,8 +117,18 @@ class Course extends BaseController
         $subchapters = new SubchapterModel();
 
         $data['course'] = $this->courses->info($c_id);
-        $data['subchapters'] = $subchapters->where('c_id', $c_id)->findAll();
-        return view('info_course', $data);
+
+        $mentorActivities = new MentorActivityModel();
+
+        $mentorActivity = $mentorActivities->getCouserCreatorId($c_id);
+
+        if (session()->get('id') == $mentorActivity->user_id) {
+
+            $data['subchapters'] = $subchapters->where('c_id', $c_id)->findAll();
+            return view('info_course', $data);
+        } else {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
     }
 
 
@@ -131,86 +142,103 @@ class Course extends BaseController
       
     public function edit($c_id)
     {
-        $data['course'] = $this->courses->where('c_id', $c_id)->first();
-        $data['categories'] = $this->categories->findAll();
-        return view('edit_course', $data);
+        $mentorActivities = new MentorActivityModel();
+
+        $mentorActivity = $mentorActivities->getCouserCreatorId($c_id);
+
+        if (session()->get('id') == $mentorActivity->user_id) {
+
+            $data['course'] = $this->courses->where('c_id', $c_id)->first();
+            $data['categories'] = $this->categories->findAll();
+            return view('edit_course', $data);
+        } else {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
     }
 
     public function update($c_id)
     {
-        $validation = \Config\Services::validation();
+        $mentorActivities = new MentorActivityModel();
 
-        $validation->setRules($this->courses->validationRules, $this->courses->errorMessage);
+        $mentorActivity = $mentorActivities->getCouserCreatorId($c_id);
 
-        $isValid = $validation->withRequest($this->request)->run();
+        if (session()->get('id') == $mentorActivity->user_id) {
+            $validation = \Config\Services::validation();
 
-        $isPaidCourse = $this->request->getPost('paid_check'); //0 = false, 1 = true
+            $validation->setRules($this->courses->validationRules, $this->courses->errorMessage);
 
-        if ($isPaidCourse != null) { //validasi paid check
+            $isValid = $validation->withRequest($this->request)->run();
 
-            if ($isPaidCourse && $this->request->getPost('c_price') < 1) {
-                session()->setFlashdata('error_c_price', 'Harga Course harus lebih dari 0');
+            $isPaidCourse = $this->request->getPost('paid_check'); //0 = false, 1 = true
+
+            if ($isPaidCourse != null) { //validasi paid check
+
+                if ($isPaidCourse && $this->request->getPost('c_price') < 1) {
+                    session()->setFlashdata('error_c_price', 'Harga Course harus lebih dari 0');
+
+                    $isValid = false;
+                }
+            } else {
+                session()->setFlashdata('error_paid_check', 'Jenis Course harus ditentukan!');
 
                 $isValid = false;
             }
-        } else {
-            session()->setFlashdata('error_paid_check', 'Jenis Course harus ditentukan!');
 
-            $isValid = false;
-        }
-
-        if ($this->request->getFile('course_picture')->isValid()) {
-            if (!$this->validate([
-                'course_picture' => [
-                    'rules' => 'uploaded[course_picture]|mime_in[course_picture,image/jpg,image/jpeg,image/png]|max_size[course_picture,2048]',
-                    'errors' => [
-                        'uploaded' => 'Harus Ada File yang diupload',
-                        'mime_in' => 'Format File Harus Berupa jpg,jpeg,png',
-                        'max_size' => 'Ukuran File Maksimal 2 MB'
+            if ($this->request->getFile('course_picture')->isValid()) {
+                if (!$this->validate([
+                    'course_picture' => [
+                        'rules' => 'uploaded[course_picture]|mime_in[course_picture,image/jpg,image/jpeg,image/png]|max_size[course_picture,2048]',
+                        'errors' => [
+                            'uploaded' => 'Harus Ada File yang diupload',
+                            'mime_in' => 'Format File Harus Berupa jpg,jpeg,png',
+                            'max_size' => 'Ukuran File Maksimal 2 MB'
+                        ]
                     ]
-                ]
-            ])) {
+                ])) {
 
-                session()->setFlashdata('error_course_picture_1', $this->validator->getError('course_picture'));
+                    session()->setFlashdata('error_course_picture_1', $this->validator->getError('course_picture'));
 
-                $isValid = false;
+                    $isValid = false;
+                }
+
+
+                if ($isValid) {
+
+                    $file = $this->request->getFile('course_picture');
+
+                    $fileName = $file->getRandomName();
+
+                    $file->move(ROOTPATH . 'public/uploads/' . $c_id, $fileName);
+
+                    $data['c_name'] = $this->request->getPost('c_name');
+                    $data['c_desc'] = $this->request->getPost('c_desc');
+                    $data['c_price'] = ($isPaidCourse) ? $this->request->getPost('c_price') : 0;
+                    $data['c_imagepath'] = $fileName;
+                    $data['category_id'] = $this->request->getPost('category_id');
+
+                    $this->courses->update($c_id, $data);
+
+                    return redirect()->to(base_url('course/' . $c_id . '/info'));
+                }
+            } else {
+                if ($isValid) {
+                    $data['c_name'] = $this->request->getPost('c_name');
+                    $data['c_desc'] = $this->request->getPost('c_desc');
+                    $data['c_price'] = ($isPaidCourse) ? $this->request->getPost('c_price') : 0;
+                    $data['category_id'] = $this->request->getPost('category_id');
+
+                    $this->courses->update($c_id, $data);
+
+                    return redirect()->to(base_url('course/' . $c_id . '/info'));
+                }
             }
 
+            $this->generateErrorToView($validation);
 
-            if ($isValid) {
-
-                $file = $this->request->getFile('course_picture');
-
-                $fileName = $file->getRandomName();
-
-                $file->move(ROOTPATH . 'public/uploads/' . $c_id, $fileName);
-
-                $data['c_name'] = $this->request->getPost('c_name');
-                $data['c_desc'] = $this->request->getPost('c_desc');
-                $data['c_price'] = ($isPaidCourse) ? $this->request->getPost('c_price') : 0;
-                $data['c_imagepath'] = $fileName;
-                $data['category_id'] = $this->request->getPost('category_id');
-
-                $this->courses->update($c_id, $data);
-
-                return redirect()->to(base_url('course/' . $c_id . '/info'));
-            }
+            return redirect()->back()->withInput();
         } else {
-            if ($isValid) {
-                $data['c_name'] = $this->request->getPost('c_name');
-                $data['c_desc'] = $this->request->getPost('c_desc');
-                $data['c_price'] = ($isPaidCourse) ? $this->request->getPost('c_price') : 0;
-                $data['category_id'] = $this->request->getPost('category_id');
-
-                $this->courses->update($c_id, $data);
-
-                return redirect()->to(base_url('course/' . $c_id . '/info'));
-            }
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
         }
-
-        $this->generateErrorToView($validation);
-
-        return redirect()->back()->withInput();
     }
 
     public function course_page($c_id)
