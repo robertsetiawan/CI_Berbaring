@@ -215,6 +215,11 @@ class Course extends BaseController
 
     public function course_page($c_id)
     {
-        return view('course_learning_page.php');
+        $data['course'] = $this->courses->info($c_id);
+        if ($data['course']!=NULL){
+            return view('course_learning_page.php', $data);
+        }else{
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
     }
 }
