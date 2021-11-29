@@ -42,10 +42,12 @@ $routes->get('/course/(:segment)/detail/(:segment)/edit', 'Subchapter::edit/$1/$
 $routes->add('/course/(:segment)/detail/(:segment)/update', 'Subchapter::update/$1/$2', ['filter' => 'auth']);
 $routes->get('/course/(:segment)/detail/(:segment)/delete', 'Subchapter::delete/$1/$2', ['filter' => 'auth']);
 $routes->add('/course/add', 'Course::add', ['filter' => 'auth']); //method post buat tambah course baru
+$routes->add('/search', 'Course::search');
 $routes->add('/login/process', 'User::login');
 $routes->add('/register/process', 'User::register');
 $routes->get('/logout', 'User::logout');
 $routes->add('/homepage/pelajar/(:any)', 'StudentActivity::page/$1', ['filter' => 'auth']);
+$routes->add('/homepage/mentor', 'MentorActivity::page', ['filter' => 'auth']);
 
 /*
  * --------------------------------------------------------------------

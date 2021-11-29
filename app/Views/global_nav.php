@@ -8,17 +8,18 @@ if (!$session->get('is_logged_in')){
     $learnings = '/homepage/pelajar/1';
 }*/
 $learnings = '/homepage/pelajar/1';
+$mentor = 'homepage/mentor';
 ?>
 <div id="header" class="layout-horizontal">
-    <header class="mb-5">
+    <header>
         <div class="header-top-right">
             <!-- Burger button responsive -->
             <a href="#" class="burger-btn d-block d-xl-none">
-                <i class="bi bi-justify fs-3"></i>
+                <i class="bi bi-justify fs-2"></i>
             </a>
         </div>
         <nav class="main-navbar">
-            <div class="container">
+            <div class="container ">
                 <ul class="d-flex justify-content-around">
                     <li class="menu-item">
                         <div class="container">
@@ -29,27 +30,28 @@ $learnings = '/homepage/pelajar/1';
                     </li>
 
                     <li class="menu-item ">
-                        <a href="#" class='menu-link'>
+                        <a href="<?= base_url('/')?>" class='menu-link'>
                             <span>Home</span>
                         </a>
                     </li>
 
                     <li class="menu-item">
-                        <a href="#" class='menu-link'>
+                        <a href="<?= base_url($mentor)?>" class='menu-link'>
                             <span>Be a Mentor</span>
                         </a>
                     </li>
 
                     <li class="menu-item">
-                        <a href="<?= base_url($learnings)?>" class='menu-link'>
+                        <a href="<?= base_url($learnings) ?>" class='menu-link'>
                             <span>My Learnings</span>
                         </a>
                     </li>
 
                     <li class="menu-item w-25">
-                        <form method="GET">
+                        <form action="<?= base_url('/search'); ?>" method="POST">
+                            <!-- getGet('search') -->
                             <div class="form-group position-relative has-icon-left">
-                                <input type="text" class="form-control" placeholder="Search ">
+                                <input name="query" type="text" class="form-control" placeholder="Search ">
                                 <div class="form-control-icon">
                                     <i class="bi bi-search"></i>
                                 </div>
@@ -57,9 +59,8 @@ $learnings = '/homepage/pelajar/1';
                         </form>
                     </li>
 
-                    <!-- code php untuk mengubah global nav saat user login -->
                     <?php
-                    if (!$session->get('is_logged_in')):?>
+                    if (!$session->get('is_logged_in')) : ?>
                         <li class="menu-item">
                             <a href="/register" class='btn btn-success'>
                                 <span>Sign Up</span>
@@ -67,11 +68,12 @@ $learnings = '/homepage/pelajar/1';
                         </li>
 
                         <li class="menu-item">
-                            <a href="<?= base_url('/login')?>" class='menu-link'>
+                            <a href="<?= base_url('/login') ?>" class='menu-link'>
                                 <span>Login</span>
                             </a>
                         </li>
-                    <?php else: ?>
+
+                    <?php else : ?>
                         <li class="menu-item">
                             <a href="<?= base_url('/logout') ?>" class='menu-link'>
                                 <span><?= $session->get('email') ?></span>
