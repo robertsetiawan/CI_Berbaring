@@ -1,0 +1,11 @@
+.layout-horizontal .main-navbar{
+    background-color: #fff;
+}
+
+.layout-horizontal .main-navbar ul>.menu-item .menu-link{
+    color: grey
+}
+
+.layout-horizontal .main-navbar ul>.menu-item:hover .menu-link{
+    color:#000
+}
