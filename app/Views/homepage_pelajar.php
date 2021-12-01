@@ -28,7 +28,6 @@ function displayCard($title="judul", $content="content", $start, $anchor= "#", $
     </div>
     ';
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,7 +51,7 @@ function displayCard($title="judul", $content="content", $start, $anchor= "#", $
     <link rel="shortcut icon" href="/assets/images/favicon.svg" type="image/x-icon">
     <style>
         footer {
-            position: relative; bottom: 0; width: 100%; margin-top: 125px;
+            position: relative; bottom: 0; width: 100%; margin-top: 200px;
         }
     </style>
 </head>
