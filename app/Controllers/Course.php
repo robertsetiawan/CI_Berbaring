@@ -253,4 +253,9 @@ class Course extends BaseController
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
         }
     }
+
+    public function course_subchapter_page($c_id, $chapter)
+    {
+        
+    }
 }

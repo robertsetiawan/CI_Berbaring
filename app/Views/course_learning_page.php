@@ -1,13 +1,5 @@
 <?php
 $session = session();
-//anchor My Learnings berubah bila sudah login
-/* sudah pakai filters
-if (!$session->get('is_logged_in')){
-    $learnings = '/login';
-}else{
-    $learnings = '/homepage/pelajar/1';
-}*/
-$learnings = '/homepage/pelajar/1';
 ?>
 
 <!DOCTYPE html>
@@ -47,90 +39,111 @@ $learnings = '/homepage/pelajar/1';
         <div id="main" class="layout-horizontal">
             <div class="content-wrapper container">
                 <div class="page-content">
-                    <section class="row">
-                        <!-- yang kiri -->
-                        <div class="col-12 col-lg-9">
-                            <h4 class="m-3"><?= $course['c_name'] ?></h4>
-                            <div class="row">
-                                <div class="col-6 col-lg-4 col-md-6">
-                                    <div class="card" style="max-width: 20rem; max-height: 25rem;">
-                                        <div class="card-content style: \'position: relative;\'">
-                                            <img class="card-img-top img-fluid" src="/assets/images/samples/banana.jpg" alt="image" style= "object-fit: cover; height: 12vw">
-                                        </div>
-                                        <div class="card-body">
-                                            <h4 class="card-title"><?= $course['c_name'] ?></h4>
-                                            <p class="card-text">
-                                                <?php 
-                                                $content = $course['c_desc'];
-                                                if (strlen($content)>50){
-                                                    $content = substr($content, 0, 50);
-                                                    $content .= "...";
-                                                }
-                                                echo $content;
-                                                ?>
-                                            </p>
-                                            <a href="'.$anchor.'"> 
-                                                <?php
-                                                    if ($course['c_price']==0){
-                                                        echo "FREE";
+                    <!-- Basic Tables start -->
+                    <section class="section">
+                        <div class="container">
+                            <div class="row align-items-start">
+                                <div class="col">
+                                    <div class="row align-items-start">
+                                        <!--Judul-->
+                                        <h5 class="my-4" id="course_title"><?= $course['c_name'] ?></h5>
+                                        <div class="col">
+                                            <!--Card course-->
+                                            <div class="card" style="width: 18rem;">
+                                                <img src="<?= '/uploads'.'/'.$course['c_id'].'/'.$course['c_imagepath']?>" class="card-img-top" alt="...">
+                                                <div class="card-body">
+                                                    <h6 class="card-title"><?= $course['c_name'] ?></h6>
+                                                    <p class="card-text"><?= $course['publisher'] ?></p>
+                                                    <a href="#" class="card-link"><?php
+                                                    if ($course['c_price']>0){
+                                                        echo 'RP. '.$course['c_price'];
                                                     }else{
-                                                        echo $course['c_price'];
-                                                    }
-                                                ?> 
-                                             </a>
+                                                        echo 'FREE';
+                                                    }?></a>
+                                                </div>  
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <!--yang didapat-->
+                                            <div class="card" style="width: 19rem;">
+                                                <div class="card-body">
+                                                    <table class="table table-borderless">
+                                                        <tbody>
+                                                            <tr>
+                                                                <th><i class='fas fa-file-video' style='font-size:14px'></th>
+                                                                <td>39 Videos</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th><i class='fas fa-comment-alt' style='font-size:14px'></th>
+                                                                <td>Discuss with the mentor</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th><i class='fas fa-folder-open' style='font-size:14px'></th>
+                                                                <td>5 Downloadable resource</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th><i class='fas fa-clock' style='font-size:14px'></th>
+                                                                <td>Lifetime access</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="enroll">
+                                                <!--Enroll-->
+                                                <button class="btn btn-primary">Enroll now</button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-6 col-lg-3 col-md-6">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <h6 class="text-muted font-semibold">X videos</h6>
-                                                <h6 class="text-muted font-semibold">Discuss with mentor</h6>
-                                                <h6 class="text-muted font-semibold">X downloadable resources</h6>
-                                                <h6 class="text-muted font-semibold">Lifetime access</h6>
+                                    <div class="col">
+                                        <h4>Description</h4>
+                                        <div class="card" style="width: 40rem;">
+                                            <div class="card-body">
+                                                <p class="card-text"><?= $course['c_desc'] ?></p>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                    <div class="col-5">
+                                        <h5 class="my-4" id="course_title">Know Your Mentor</h5>
+                                        <!--Mentor-->
+                                        <div class="row align-items-start">
+                                            <div class="col">
+                                                <img class="mb-1" src="https://awsimages.detik.net.id/community/media/visual/2020/03/02/2a63b94a-6c0c-4a98-bb8a-22d39ba1c449_43.jpeg?w=700&q=90" height="120" width="120" style="object-fit: cover; border-radius: 50%">
+                                            </div>
+                                            <div class="col">
+                                                <p><b><?= $course['publisher'] ?></b></p>
+                                                <p>Lecturer</p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <h4>Description</h4>
-                                    <div>
-                                        <p><?= $course['c_desc'] ?></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <h4>Know your mentor!</h4>
-                                <div class="d-flex align-items-center">
-                                    <div class="avatar avatar-xl">
-                                        <img src="/assets/images/faces/1.jpg" alt="Face 1">
-                                    </div>
-                                    <div class="ms-3 name">
-                                        <h5 class="font-bold">John Duck</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- yang kanan -->
-                        <div class="col-12 col-lg-3">
-                            <h4 class="m-3">Chapter</h4>
-                            <div class="card">
-                                <div class="row m-2">
-                                    <?php
-                                    $count = 0;
-                                    foreach ($chapters as $chapter){
-                                        $count++;
-                                        echo '
-                                        <div class="d-flex align-items-center">
-                                            <i class="bi bi-lock"></i>
-                                            <span>Chapter '.$count.': '.$chapter['sc_name'].'</span>
+                                <div class="col">
+                                    <h5 class="my-4" id="course_title">Chapter</h5>
+                                    <!--Card Chapter-->
+                                    <div class="card" style="width: 20rem;">
+                                        <div class="card-body">
+                                            <table class="table table-borderless">
+                                                <tbody>
+                                                    <?php
+                                                    $count = 0;
+                                                    foreach ($chapters as $chapter){
+                                                        $count++;
+                                                        echo '<tr>
+                                                            <th><i class=\'fas fa-lock\' style=\'font-size:14px\'></th>
+                                                            <td>Chapter '.$count.': '.$chapter['sc_name'].'</td>
+                                                        </tr>';
+                                                    }
+                                                    if ($count==0){
+                                                        echo '<tr>
+                                                            <th><i class=\'fas fa-lock\' style=\'font-size:14px\'></th>
+                                                            <td>Belum ada chapter</td>
+                                                        </tr>';
+                                                    }
+                                                    ?>
+                                                </tbody>
+                                            </table>
                                         </div>
-                                        ';
-                                    }
-                                    ?>
+                                    </div>
                                 </div>
                             </div>
                         </div>
