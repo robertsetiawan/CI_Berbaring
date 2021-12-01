@@ -48,11 +48,7 @@ class CourseModel extends Model
 
     public function info($c_id)
     {
-        $query = $this->db->query('SELECT c.*, t.*, u.name AS publisher FROM course c 
-        INNER JOIN category t ON c.category_id = t.category_id 
-        INNER JOIN mentor_activity m ON c.c_id = m.c_id 
-        INNER JOIN user u ON m.user_id = u.user_id
-        WHERE c.c_id =' .$c_id. ';');
+        $query = $this->db->query('SELECT * FROM course c INNER JOIN category t ON c.category_id = t.category_id WHERE c.c_id=' .$c_id. ';');
 
         return $query->getRowArray();
     }
@@ -64,5 +60,16 @@ class CourseModel extends Model
         WHERE c.c_name LIKE "%'. $c_name . '%"');
 
         return $query->getResultArray();
+    }
+
+    public function getCourseDetail($c_id)
+    {
+        $query = $this->db->query('SELECT c.*, t.*,u.name AS publisher FROM course c 
+        INNER JOIN category t ON c.category_id = t.category_id 
+        INNER JOIN mentor_activity m ON c.c_id = m.c_id 
+        INNER JOIN user u ON m.user_id = u.user_id
+        WHERE c.c_id =' .$c_id. ';');
+
+        return $query->getRowArray();
     }
 }

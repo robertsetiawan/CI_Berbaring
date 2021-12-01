@@ -74,7 +74,7 @@ function displayCard($title="judul", $content="content", $start, $anchor= "#", $
                         
                         $page = (int)$page;
                         foreach ($courses as $course){
-                            displayCard($course['title'], $course['content'], $course['started_date']);
+                            displayCard($course['title'], $course['content'], $course['started_date'], base_url('course/'.$course['c_id']));
                         }
                         ?>
                         

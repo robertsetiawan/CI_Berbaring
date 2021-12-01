@@ -37,6 +37,8 @@ $session = session();
         <?php include('global_nav.php'); ?>
         <br>
         <div id="main" class="layout-horizontal">
+            <!-- mode belum enroll-->
+            <?php if ($mode==1) : ?>
             <div class="content-wrapper container">
                 <div class="page-content">
                     <!-- Basic Tables start -->
@@ -150,6 +152,166 @@ $session = session();
                     </section>
                 </div>
             </div>
+            <?php elseif ($mode==2) : ?>
+            <!-- mode sudah enroll-->
+            <div class="content-wrapper container">
+                <div class="page-content">
+                    <!-- Basic Tables start -->
+                    <section class="section">
+                        <div class="container">
+                            <div class="row align-items-start">
+                                <div class="col">
+                                    <div class="row align-items-start">
+                                        <!--Judul-->
+                                        <h5 class="my-4" id="course_title"><?= $course['c_name'] ?></h5>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <h5 class="my-4">Description</h4>
+                                            <div class="card" style="width: 40rem;">
+                                                <div class="card-body">
+                                                    <p class="card-text"><?= $course['c_desc'] ?></p>
+                                                </div> 
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <h5 class="my-4" id="course_title">Chapter</h5>
+                                            <!--Card Chapter-->
+                                            <div class="card" style="width: 20rem;">
+                                                <div class="card-body">
+                                                    <table class="table table-borderless">
+                                                        <tbody>
+                                                            <?php
+                                                            $count = 0;
+                                                            foreach ($chapters as $chapter){
+                                                                $count++;
+                                                                echo '<tr>
+                                                                    <td><a href="'.base_url('course/'.$course['c_id'].'/learn'.'/'.$count).'">Chapter '.$count.': '.$chapter['sc_name'].'</td>
+                                                                </tr>';
+                                                            }
+                                                            if ($count==0){
+                                                                echo '<tr>
+                                                                    <th><i class=\'fas fa-lock\' style=\'font-size:14px\'></th>
+                                                                    <td>Belum ada chapter</td>
+                                                                </tr>';
+                                                            }
+                                                            ?>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-5">
+                                        <h5 class="my-4" id="course_title">Know Your Mentor</h5>
+                                        <!--Mentor-->
+                                        <div class="row align-items-start">
+                                            <div class="col">
+                                                <img class="mb-1" src="https://awsimages.detik.net.id/community/media/visual/2020/03/02/2a63b94a-6c0c-4a98-bb8a-22d39ba1c449_43.jpeg?w=700&q=90" height="120" width="120" style="object-fit: cover; border-radius: 50%">
+                                            </div>
+                                            <div class="col">
+                                                <p><b><?= $course['publisher'] ?></b></p>
+                                                <p>Lecturer</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <!-- mode subchapter mulai belajar-->
+            <?php elseif ($mode==3) : ?>
+                <div class="content-wrapper container">
+                <div class="page-content">
+                    <!-- Basic Tables start -->
+                    <section class="section">
+                        <div class="container">
+                            <div class="row align-items-start">
+                                <div class="col">
+                                    <div class="row align-items-start">
+                                        <!--Judul-->
+                                        <h5 class="my-4" id="course_title"><?= $course['c_name'] ?></h5>
+                                        <div class="col">
+                                            <!--yt vid-->
+                                            <iframe width="1280" height="720"
+                                            src="<?= $subchapter['sc_video_link']?>">
+                                            </iframe> 
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <h4 class="my-4">Files</h5>
+                                            <!--Card Chapter-->
+                                            <div class="card" style="width: 20rem;">
+                                                <div class="card-body">
+                                                    <table class="table table-borderless">
+                                                        <tbody>
+                                                            <a href="<?= base_url('uploads/' . $course['c_id'] . '/' . $subchapter['sc_id'] . '/' . $subchapter['sc_filepath']) ?>" target="_blank" rel="noopener noreferrer"><?= $subchapter['sc_filepath']?></a><br>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <h4 class="my-4">Description</h4>
+                                            <div class="card" style="width: 55rem;">
+                                                <div class="card-body">
+                                                    <p class="card-text"><?= $subchapter['sc_desc'] ?></p>
+                                                </div> 
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <h4 class="my-4" id="course_title">Chapter</h5>
+                                            <!--Card Chapter-->
+                                            <div class="card" style="width: 20rem;">
+                                                <div class="card-body">
+                                                    <table class="table table-borderless">
+                                                        <tbody>
+                                                            <?php
+                                                            $count = 0;
+                                                            foreach ($chapters as $chapter){
+                                                                $count++;
+                                                                echo '<tr>
+                                                                    <td><a href="'.base_url('course/'.$course['c_id'].'/learn'.'/'.$count).'">Chapter '.$count.': '.$chapter['sc_name'].'</td>
+                                                                </tr>';
+                                                            }
+                                                            if ($count==0){
+                                                                echo '<tr>
+                                                                    <th><i class=\'fas fa-lock\' style=\'font-size:14px\'></th>
+                                                                    <td>Belum ada chapter</td>
+                                                                </tr>';
+                                                            }
+                                                            ?>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-5">
+                                        <h5 class="my-4" id="course_title">Know Your Mentor</h5>
+                                        <!--Mentor-->
+                                        <div class="row align-items-start">
+                                            <div class="col">
+                                                <img class="mb-1" src="https://awsimages.detik.net.id/community/media/visual/2020/03/02/2a63b94a-6c0c-4a98-bb8a-22d39ba1c449_43.jpeg?w=700&q=90" height="120" width="120" style="object-fit: cover; border-radius: 50%">
+                                            </div>
+                                            <div class="col">
+                                                <p><b><?= $course['publisher'] ?></b></p>
+                                                <p>Lecturer</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <?php endif?>
         </div>
         <?php include('footer.php') ?>
     </div>
