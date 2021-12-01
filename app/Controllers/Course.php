@@ -139,6 +139,11 @@ class Course extends BaseController
         return view('search_course', $data);
         // return dd($data);
     }
+
+    public function landing(){
+        $data['course'] = $this->courses->landing();
+        return view('landing_page', $data);
+    }
       
     public function edit($c_id)
     {

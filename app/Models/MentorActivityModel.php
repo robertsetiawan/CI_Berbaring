@@ -25,7 +25,7 @@ class MentorActivityModel extends Model{
     {
         $query = $this->db->query(
             'SELECT * FROM mentor_activity AS s
-            LEFT JOIN course AS c
+            INNER JOIN course AS c
             ON s.c_id = c.c_id WHERE user_id =' . $this->db->escape($uid)
         );
 
