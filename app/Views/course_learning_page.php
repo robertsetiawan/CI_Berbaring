@@ -93,7 +93,7 @@ $session = session();
                                             </div>
                                             <div class="enroll">
                                                 <!--Enroll-->
-                                                <button class="btn btn-primary">Enroll now</button>
+                                                <a href=<?= base_url('course/'.$course['c_id'].'/enroll') ?>><button class="btn btn-primary">Enroll now</button></a>
                                             </div>
                                         </div>
                                     </div>
@@ -232,7 +232,8 @@ $session = session();
                                 <div class="col">
                                     <div class="row align-items-start">
                                         <!--Judul-->
-                                        <h5 class="my-4" id="course_title"><?= $course['c_name'] ?></h5>
+                                        <h5 class="mt-4" id="course_title"><?= $course['c_name'] ?></h5>
+                                        <h6 class="mb-4"><?= 'Chapter '.$subchapter['sc_id'].': '.$subchapter['sc_name'] ?></h5>
                                         <div class="col">
                                             <!--yt vid-->
                                             <iframe width="1280" height="720"
@@ -242,7 +243,7 @@ $session = session();
                                     </div>
                                     <div class="row">
                                         <div class="col">
-                                            <h4 class="my-4">Files</h5>
+                                            <h4 class="my-4">Files</h4>
                                             <!--Card Chapter-->
                                             <div class="card" style="width: 20rem;">
                                                 <div class="card-body">
