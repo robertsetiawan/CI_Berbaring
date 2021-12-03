@@ -39,10 +39,10 @@
                         <div class="row row-cols-3 row-cols-md-4 g-4">
                             <?php foreach ($course as $c) : ?>
                                 <div class="col">
-                                    <a href="<?= base_url('#'); ?>">
+                                    <a href="<?= base_url('course/'.$c['c_id']); ?>">
                                         <div class="card h-90">
                                             <div class="card-content">
-                                                <img src="<?= $c['c_imagepath']; ?>" class="card-img-top img-fluid" alt="">
+                                                <img src="<?= '/uploads'.'/'.$c['c_id'].'/'.$c['c_imagepath'] ?>" class="card-img-top img-fluid" alt="">
                                                 <div class="card-body">
                                                     <h5 class="card-title"><?= $c['c_name'] ?></h5>
                                                     <p class="card-text"><?= $c['name'] ?></p>
