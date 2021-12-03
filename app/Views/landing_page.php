@@ -52,73 +52,29 @@ $learnings = '/homepage/pelajar/1';
                     <!-- Basic Tables start -->
                     <section class="content-types">
                         <div class="row row-cols-3 row-cols-md-4 g-4">
-                            <div class="col">
-                                <a href="#">
-                                    <div class="card h-90">
-                                        <div class="card-content">
-                                            <img src="/assets/images/courses/css1.jpg" class="card-img-top img-fluid" alt="">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Judul</h5>
-                                                <p class="card-text">Nama Mentor</p>
-                                            </div>
-                                            <div class="card-footer border-0">
-                                                <h6 class="card-text" style="color:#409CA6">Rp 80.000</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-
-                            <div class="col">
-                                <a href="#">
-                                    <div class="card h-90">
-                                        <div class="card-content">
-                                            <img src="/assets/images/courses/css2.png" class="card-img-top img-fluid" alt="">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Judul</h5>
-                                                <p class="card-text">Nama Mentor</p>
-                                            </div>
-                                            <div class="card-footer border-0">
-                                                <h6 class="card-text" style="color:#409CA6">Rp 80.000</h6>
+                            <?php foreach ($course as $c) : ?>
+                                <div class="col">
+                                    <a href="<?= base_url('#'); ?>">
+                                        <div class="card h-90">
+                                            <div class="card-content">
+                                                <img src="<?= $c['c_imagepath']; ?>" class="card-img-top img-fluid" alt="">
+                                                <div class="card-body">
+                                                    <h5 class="card-title"><?= $c['c_name'] ?></h5>
+                                                    <p class="card-text"><?= $c['name'] ?></p>
+                                                </div>
+                                                <div class="card-footer border-0">
+                                                    <h6 class="card-text" style="color:#409CA6">
+                                                        <?php if ($c['c_price'] == 0) : ?>
+                                                            FREE
+                                                        <?php else : echo 'Rp' . number_format($c['c_price'], 0, ',', '.') ?>
+                                                    </h6>
+                                                <?php endif ?>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </a>
-                            </div>
-
-                            <div class="col">
-                                <a href="#">
-                                    <div class="card h-90">
-                                        <div class="card-content">
-                                            <img src="/assets/images/courses/frontback.jpg" class="card-img-top img-fluid" alt="">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Judul</h5>
-                                                <p class="card-text">Nama Mentor</p>
-                                            </div>
-                                            <div class="card-footer border-0">
-                                                <h6 class="card-text" style="color:#409CA6">Rp 80.000</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-
-                            <div class="col">
-                                <a href="#">
-                                    <div class="card h-90">
-                                        <div class="card-content">
-                                            <img src="/assets/images/courses/ml1.jpg" class="card-img-top img-fluid" alt="">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Judul</h5>
-                                                <p class="card-text">Nama Mentor</p>
-                                            </div>
-                                            <div class="card-footer border-0">
-                                                <h6 class="card-text" style="color:#409CA6">Rp 80.000</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
+                                    </a>
+                                </div>
+                            <?php endforeach ?>
                         </div>
                     </section>
                 </div>
