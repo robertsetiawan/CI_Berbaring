@@ -13,6 +13,7 @@ function displayCard($title="judul", $content="content", $start, $anchor= "#", $
     }
     echo '
     <div class="col">
+    <a href="'.$anchor.'">
     <div class="card" style="max-width: 20rem; max-height: 25rem;">
         <div class="card-content style: \'position: relative;\'">
             <img class="card-img-top img-fluid" src="'.$picture.'" alt="image" style= "object-fit: cover; height: 12vw">
@@ -22,9 +23,10 @@ function displayCard($title="judul", $content="content", $start, $anchor= "#", $
             <p class="card-text">
                 '.$deskripsi.'
             </p>
-            <a href="'.$anchor.'"> '.$btnText.' </a>
+             '.$btnText.' 
         </div>
     </div>
+    </a>
     </div>
     ';
 }
