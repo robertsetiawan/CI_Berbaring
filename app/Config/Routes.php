@@ -41,10 +41,10 @@ $routes->add('/course/(:segment)/detail/add', 'Subchapter::add/$1', ['filter' =>
 $routes->get('/course/(:segment)/detail/(:segment)/edit', 'Subchapter::edit/$1/$2', ['filter' => 'auth']);
 $routes->add('/course/(:segment)/detail/(:segment)/update', 'Subchapter::update/$1/$2', ['filter' => 'auth']);
 $routes->get('/course/(:segment)/detail/(:segment)/delete', 'Subchapter::delete/$1/$2', ['filter' => 'auth']);
-$routes->add('/course/(:segment)', 'Course::course_page/$1');
-$routes->add('/course/(:segment)/learn/(:any)', 'Course::course_subchapter_page/$1/$2', ['filter' => 'auth']);
-$routes->add('/course/(:segment)/enroll', 'StudentActivity::enroll/$1', ['filter' => 'auth']);
-$routes->add('/course/(:segment)/start', 'StudentActivity::startCourse/$1', ['filter' => 'auth']);
+$routes->get('/course/(:segment)', 'Course::course_page/$1');
+$routes->get('/course/(:segment)/learn/(:any)', 'Course::course_subchapter_page/$1/$2', ['filter' => 'auth']);
+$routes->get('/course/(:segment)/enroll', 'StudentActivity::enroll/$1', ['filter' => 'auth']);
+$routes->get('/course/(:segment)/start', 'StudentActivity::startCourse/$1', ['filter' => 'auth']);
 $routes->add('/course/add', 'Course::add', ['filter' => 'auth']); //method post buat tambah course baru
 $routes->add('/search', 'Course::search');
 $routes->add('/login/process', 'User::login');

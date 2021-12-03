@@ -31,12 +31,5 @@ class SubchapterModel extends Model{
         $query = $this->db->query('SELECT * FROM subchapter WHERE c_id = '.$c_id);
 
         return $query->getResultArray();
-    }
-
-    public function getSubchapterDetail($c_id, $sc_id){
-        $query = $this->db->query('SELECT * FROM subchapter WHERE c_id = '.$c_id.' AND sc_id ='.$sc_id);
-
-        return $query->getResultArray();
-    }
-    
+    }    
 }

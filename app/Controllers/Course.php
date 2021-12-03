@@ -302,9 +302,9 @@ class Course extends BaseController
         
         if ($check_data['jumlah']!=0){
             $data['course'] = $this->courses->getCourseDetail($c_id);
-            $subchapter = $subchapters->getSubchapterDetail($c_id, $sc_id);
-            $data['subchapter'] = $subchapter[0];
             $data['chapters'] = $subchapters->getChapters($c_id);
+            $data['subchapter'] = $data['chapters'][$sc_id-1];
+            $data['no'] = $sc_id;
             $data['mode'] = 3;
 
             if ($data['subchapter']!=NULL AND $data['course']!=NULL){

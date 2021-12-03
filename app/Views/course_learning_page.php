@@ -233,7 +233,7 @@ $session = session();
                                     <div class="row align-items-start">
                                         <!--Judul-->
                                         <h5 class="mt-4" id="course_title"><?= $course['c_name'] ?></h5>
-                                        <h6 class="mb-4"><?= 'Chapter '.$subchapter['sc_id'].': '.$subchapter['sc_name'] ?></h5>
+                                        <h6 class="mb-4"><?= 'Chapter '.$no.': '.$subchapter['sc_name'] ?></h5>
                                         <div class="col">
                                             <!--yt vid-->
                                             <iframe width="1280" height="720"
