@@ -26,4 +26,17 @@ class SubchapterModel extends Model{
             'max_length' => 'Panjang karakter maksimal adalah 1000'
         ],
     ];
+
+    public function getChapters($c_id){
+        $query = $this->db->query('SELECT * FROM subchapter WHERE c_id = '.$c_id);
+
+        return $query->getResultArray();
+    }
+
+    public function getSubchapterDetail($c_id, $sc_id){
+        $query = $this->db->query('SELECT * FROM subchapter WHERE c_id = '.$c_id.' AND sc_id ='.$sc_id);
+
+        return $query->getResultArray();
+    }
+    
 }
