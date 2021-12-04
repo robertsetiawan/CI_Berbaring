@@ -31,7 +31,7 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
+$routes->get('/', 'Course::landing');
 $routes->get('/course', 'Course::index', ['filter' => 'auth']);
 $routes->get('/course/(:segment)/info', 'Course::info/$1', ['filter' => 'auth']);
 $routes->get('/course/(:segment)/edit', 'Course::edit/$1', ['filter' => 'auth']);
@@ -41,6 +41,10 @@ $routes->add('/course/(:segment)/detail/add', 'Subchapter::add/$1', ['filter' =>
 $routes->get('/course/(:segment)/detail/(:segment)/edit', 'Subchapter::edit/$1/$2', ['filter' => 'auth']);
 $routes->add('/course/(:segment)/detail/(:segment)/update', 'Subchapter::update/$1/$2', ['filter' => 'auth']);
 $routes->get('/course/(:segment)/detail/(:segment)/delete', 'Subchapter::delete/$1/$2', ['filter' => 'auth']);
+$routes->get('/course/(:segment)', 'Course::course_page/$1');
+$routes->get('/course/(:segment)/learn/(:any)', 'Course::course_subchapter_page/$1/$2', ['filter' => 'auth']);
+$routes->get('/course/(:segment)/enroll', 'StudentActivity::enroll/$1', ['filter' => 'auth']);
+$routes->get('/course/(:segment)/start', 'StudentActivity::startCourse/$1', ['filter' => 'auth']);
 $routes->add('/course/add', 'Course::add', ['filter' => 'auth']); //method post buat tambah course baru
 $routes->add('/search', 'Course::search');
 $routes->add('/login/process', 'User::login');

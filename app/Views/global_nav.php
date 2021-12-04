@@ -10,21 +10,40 @@ if (!$session->get('is_logged_in')){
 $learnings = '/homepage/pelajar/1';
 $mentor = 'homepage/mentor';
 ?>
-<div id="header" class="layout-horizontal">
+
+<link rel="stylesheet" href="/assets/css/global_nav.css">
+
+<div id="main" class="layout-horizontal">
     <header>
-        <div class="header-top-right">
-            <!-- Burger button responsive -->
-            <a href="#" class="burger-btn d-block d-xl-none">
-                <i class="bi bi-justify fs-2"></i>
-            </a>
+        <!-- <div class="header-top">
+            <div class="container">
+                <div class="logo">
+                    <a href="#"><img src="/assets/images/logo/berbaring_light.png" height="50" class="d-inline-block align-top" alt="Logo" srcset=""></a>
+                </div>
+                <div class="header-top-right"> -->
+        <!-- Burger button responsive -->
+        <!-- <a href="#" class="burger-btn d-block d-xl-none">
+                        <i class="bi bi-justify fs-3"></i>
+                    </a>
+                </div>
+            </div>
+        </div> -->
+
+        <div class="container">
+            <div class="header-top-right" style="align-items: center;">
+                <!-- Burger button responsive -->
+                <a href="#" class="burger-btn d-block d-xl-none">
+                    <i class="bi bi-justify fs-1"></i>
+                </a>
+            </div>
         </div>
-        <nav class="main-navbar">
-            <div class="container ">
-                <ul class="d-flex justify-content-around">
+        <nav class="main-navbar" style="display: block;">
+            <div class="container">
+                <ul class="d-flex justify-content-around" style="align-items: center;">
                     <li class="menu-item">
                         <div class="container">
                             <div class="logo">
-                                <a href="index.html"><img src="/assets/images/logo/logo.png" width="100" height="30" class="d-inline-block align-top" alt="Logo" srcset=""></a>
+                                <a href="#"><img src="/assets/images/logo/berbaring_light.png" height="50" class="d-inline-block align-top" alt="Logo" srcset=""></a>
                             </div>
                         </div>
                     </li>

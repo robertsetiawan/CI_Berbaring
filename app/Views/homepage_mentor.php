@@ -13,9 +13,10 @@ function displayMentorCard($title="judul", $content="content", $published, $anch
     }
     echo '
     <div class="col">
+    <a href='.base_url('/course'.'/'.$anchor.'/info').'>
     <div class="card" style="max-width: 20rem; max-height: 25rem;">
         <div class="card-content style: \'position: relative;\'">
-            <img class="img-fluid w-100" src="'.$picture.'" style: "object-fit= cover; height: 12vw" alt="image">
+            <img class="img-fluid w-100" src="'.$picture.'" style: "object-fit= cover; height: 12vw" alt="image" style= "object-fit: cover; height: 12vw">
             <span 
             style="position: absolute; 
             bottom: 0px; right: 0px; 
@@ -24,12 +25,13 @@ function displayMentorCard($title="judul", $content="content", $published, $anch
             padding-left: 16px; padding-right: 16px;">'.$publish.'</span>
         </div>
         <div class="card-body">
-            <h4 class="card-title"><a href='.base_url('/course'.'/'.$anchor.'/info').'>'.$title.'</a></h4>
+            <h4 class="card-title">'.$title.'</h4>
             <p class="card-text">
                 '.$deskripsi.'
             </p>
         </div>
     </div>
+    </a>
     </div>
     ';
 }
@@ -76,20 +78,27 @@ function displayMentorCard($title="judul", $content="content", $published, $anch
                 <div class="page-content">
                     <section class="row row-cols-3 row-cols-md-4 g-4">
                             <div class="col">
+                                <a href="<?= base_url('/course')?>">
                                 <div class="card" style="max-width: 20rem; max-height: 25rem;">
                                     <div class="card-content style: 'position: relative;'">
                                         <img class="img-fluid w-100" src="/assets/images/addcourse.png" style= "object-fit: cover" alt="image">
                                     </div>
                                     <div class="card-body">
-                                        <h4 class="card-title"><a href="<?= base_url('/course')?>">New Course</a></h4>
+                                        <h4 class="card-title">New Course</h4>
                                     </div>
                                 </div>
+                                </a>
                             </div>
 
                             <?php
                             //created course
                             foreach ($courses as $course){
-                                displayMentorCard($course['c_name'], $course['c_desc'], $course['published_date'], $course['c_id']);
+                                displayMentorCard(
+                                    $course['c_name'], 
+                                    $course['c_desc'], 
+                                    $course['published_date'], 
+                                    $course['c_id'], 
+                                    '/uploads'.'/'.$course['c_id'].'/'.$course['c_imagepath']);
                             }
                             ?>
                     </section>
