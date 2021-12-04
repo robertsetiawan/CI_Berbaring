@@ -8,6 +8,7 @@ if (!$session->get('is_logged_in')){
     $learnings = '/homepage/pelajar/1';
 }*/
 $learnings = '/homepage/pelajar/1';
+$mentor = 'homepage/mentor';
 ?>
 
 <!DOCTYPE html>
@@ -32,6 +33,21 @@ $learnings = '/homepage/pelajar/1';
     <link rel="shortcut icon" href="/assets/images/favicon.svg" type="image/x-icon">
     <link rel="stylesheet" href="/assets/css/landing.css">
     <link rel="stylesheet" href="/assets/css/card.css">
+
+    <script>
+        $(function() {
+            $('a[href*=\\#]:not([href=\\#])').on('click', function() {
+                var target = $(this.hash);
+                target = target.length ? target : $('[name=' + this.hash.substr(1) + ']');
+                if (target.length) {
+                    $('html, body').animate({
+                        scrollTop: target.offset().top
+                    }, 10000);
+                    return false;
+                }
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -42,10 +58,17 @@ $learnings = '/homepage/pelajar/1';
             <header id="showcase">
                 <h1 style="color:white">Chin up, straight back, let's study with all our might</h1>
                 <p style="color:white; font-size:18px">Dengan berbaring, Anda dapat mempelajari berbagai skill secara terorganisir.</p>
-                <a href="#" class="btn btn-success">Start Now</a>
+                <?php
+                if (!$session->get('is_logged_in')) : ?>
+                    <!-- Sign up kalau belum masuk akun -->
+                    <a href="<?= base_url('/register'); ?>" class="btn btn-success">Start Now</a>
+                <?php else : ?>
+                    <!-- Scroll ke recommended  -->
+                    <a href="#recommended" class="btn btn-success">Start Now</a>
+                <?php endif ?>
             </header>
             <div class="content-wrapper container" style="padding-top: 60px;">
-                <div class="page-heading">
+                <div id="recommended" class="page-heading">
                     <h3>Recommended For You</h3>
                 </div>
                 <div class="page-content">
@@ -54,10 +77,10 @@ $learnings = '/homepage/pelajar/1';
                         <div class="row row-cols-3 row-cols-md-4 g-4">
                             <?php foreach ($course as $c) : ?>
                                 <div class="col">
-                                    <a href="<?= base_url('course/'.$c['c_id']); ?>">
+                                    <a href="<?= base_url('course/' . $c['c_id']); ?>">
                                         <div class="card h-90">
                                             <div class="card-content">
-                                                <img src="<?= '/uploads'.'/'.$c['c_id'].'/'.$c['c_imagepath'] ?>" class="card-img-top img-fluid" alt="">
+                                                <img src="<?= '/uploads' . '/' . $c['c_id'] . '/' . $c['c_imagepath'] ?>" class="card-img-top img-fluid" alt="">
                                                 <div class="card-body">
                                                     <h5 class="card-title"><?= $c['c_name'] ?></h5>
                                                     <p class="card-text"><?= $c['name'] ?></p>
@@ -136,11 +159,8 @@ $learnings = '/homepage/pelajar/1';
                 </div>
             </div>
             <div class="content-wrapper container" style="padding-top: 60px; padding-bottom: 60px;">
-                <h1 style="color:black; text-align:center">Are you a new member?</h1>
-                <p style="color:black; font-size:32px; text-align:center">We are here, so you don’t need to worry about your future</p>
-                <div class="signup">
-                    <a href="#" class="btn btn-success">Sign Up and Get a Free Course</a>
-                </div>
+                <h1 style="color:black; text-align:center">Funfact #1:</h1>
+                <p style="color:black; font-size:32px; text-align:center">"Berbaring" merupakan singkatan dari Belajar Bersama Daring</p>
             </div>
         </div>
         <?php include('footer.php') ?>
