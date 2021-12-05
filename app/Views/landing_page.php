@@ -82,7 +82,14 @@ $mentor = 'homepage/mentor';
                                             <div class="card-content">
                                                 <img src="<?= '/uploads' . '/' . $c['c_id'] . '/' . $c['c_imagepath'] ?>" class="card-img-top img-fluid" alt="">
                                                 <div class="card-body">
-                                                    <h5 class="card-title"><?= $c['c_name'] ?></h5>
+                                                    <?php if (strlen($c['c_name']) > 22) {
+                                                        $judul = substr($c['c_name'], 0, 22);
+                                                        $judul .= "...";
+                                                    } else {
+                                                        $judul = $c['c_name'];
+                                                    }
+                                                    ?>
+                                                    <h5 class="card-title"><?= $judul ?></h5>
                                                     <p class="card-text"><?= $c['name'] ?></p>
                                                 </div>
                                                 <div class="card-footer border-0">
