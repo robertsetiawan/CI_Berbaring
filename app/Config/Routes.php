@@ -36,6 +36,7 @@ $routes->get('/course', 'Course::index', ['filter' => 'auth']);
 $routes->get('/course/(:segment)/info', 'Course::info/$1', ['filter' => 'auth']);
 $routes->get('/course/(:segment)/edit', 'Course::edit/$1', ['filter' => 'auth']);
 $routes->add('/course/(:segment)/update', 'Course::update/$1', ['filter' => 'auth']);
+$routes->get('/course/(:segment)/publish', 'Course::publish/$1', ['filter' => 'auth']);
 $routes->get('/course/(:segment)/detail', 'Subchapter::index/$1', ['filter' => 'auth']);
 $routes->add('/course/(:segment)/detail/add', 'Subchapter::add/$1', ['filter' => 'auth']);
 $routes->get('/course/(:segment)/detail/(:segment)/edit', 'Subchapter::edit/$1/$2', ['filter' => 'auth']);

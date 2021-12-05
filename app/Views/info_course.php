@@ -30,6 +30,13 @@
                 <div class="page-content">
                     <!-- Basic Tables start -->
                     <section class="section">
+                        <?php if (session()->getFlashData('published_message')) : ?>
+                            <div class="ms-auto w-25 pt-3">
+                                <div class="alert alert-danger">
+                                    <p class="alert-heading"><?= session()->getFlashdata('published_message'); ?></p>
+                                </div>
+                            </div>
+                        <?php endif ?>
                         <div class="d-flex justify-content-between mt-5 subtitle mb-3">
                             <h4><b>Info Course: </b> Course Summary</h4>
                             <a href="<?= base_url('course/' . $course['c_id'] . '/edit') ?>" class="btn btn-primary"><i class="fa fa-edit"></i> Edit Course</a>
@@ -71,7 +78,7 @@
                             <div class="mb-3 row">
                                 <label for="price" class="col-sm-2 col-form-label">Price</label>
                                 <div class="col-sm-10">
-                                    <p><?= 'Rp'. number_format($course['c_price'], 0, ',', '.') ?></p>
+                                    <p><?= 'Rp' . number_format($course['c_price'], 0, ',', '.') ?></p>
                                 </div>
                             </div>
                         <?php endif ?>
@@ -135,7 +142,7 @@
                         </div>
 
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-5">
-                            <a class="btn btn-primary" type="button">Publish</a>
+                            <a href="<?= base_url('course/' . $course['c_id'] . '/publish') ?>" class="btn btn-primary" type="button">Publish</a>
                         </div>
                     </section>
                 </div>
