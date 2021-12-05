@@ -114,10 +114,7 @@ class Course extends BaseController
 
     public function info($c_id)
     {
-
         $subchapters = new SubchapterModel();
-
-        $data['course'] = $this->courses->info($c_id);
 
         $mentorActivities = new MentorActivityModel();
 
@@ -125,7 +122,12 @@ class Course extends BaseController
 
         if (session()->get('id') == $mentorActivity->user_id) {
 
+            $data['course'] = $this->courses->info($c_id);
+
+            $data['course']['published_date'] = $mentorActivities->getCoursePublishedDate($c_id)->published_date;
+
             $data['subchapters'] = $subchapters->where('c_id', $c_id)->findAll();
+
             return view('info_course', $data);
         } else {
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();

@@ -94,7 +94,6 @@
                             <h4><b>Course Content</h4>
                             <a href="<?= base_url('course/' . $course['c_id'] . '/detail') ?>" class="btn btn-primary">Add Chapter</a>
                         </div>
-
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-flex justify-content-center fw-normal">
@@ -140,10 +139,15 @@
                                 </ul>
                             </div>
                         </div>
-
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-5">
-                            <a href="<?= base_url('course/' . $course['c_id'] . '/publish') ?>" class="btn btn-primary" type="button">Publish</a>
-                        </div>
+                        <?php if ($course['published_date'] == null) : ?>
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-5">
+                                <a href="<?= base_url('course/' . $course['c_id'] . '/publish') ?>" class="btn btn-primary" type="button">Publish</a>
+                            </div>
+                        <?php else : ?>
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-5">
+                                <p>Already Published</p>
+                            </div>
+                        <?php endif ?>
                     </section>
                 </div>
             </div>
