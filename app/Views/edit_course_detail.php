@@ -95,7 +95,8 @@
                         </div>
                     </div>
                 </section>
-            <footer>
+                <?php include('footer.php') ?>
+            <!-- <footer>
                 <div class="container">
                     <div class="footer clearfix mb-0 text-muted">
                         <div class="float-start">
@@ -107,7 +108,7 @@
                         </div>
                     </div>
                 </div>
-            </footer>
+            </footer> -->
         </div>
     </div>
     <script src="/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>

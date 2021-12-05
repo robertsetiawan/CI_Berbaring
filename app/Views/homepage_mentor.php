@@ -2,15 +2,25 @@
 //untuk keperluan card homepage mentor
 function displayMentorCard($title = "judul", $content = "content", $published, $anchor, $picture = "/assets/images/samples/banana.jpg")
 {
-    if (strlen($content) > 50) {
-        $deskripsi = substr($content, 0, 50);
+    if (strlen($title) > 22) {
+        $title = substr($title, 0, 22);
+        $title .= "...";
+    } else {
+        $title = $title;
+    }
+
+    if (strlen($content) > 27) {
+        $deskripsi = substr($content, 0, 27);
         $deskripsi .= "...";
     } else {
         $deskripsi = $content;
     }
+    
     $publish = "Published";
+    $background = "#097969";
     if ($published == NULL) {
         $publish = "Unpublished";
+        $background = "#C70039";
     }
     echo '
     <div class="col">
@@ -58,14 +68,15 @@ function displayMentorCard($title = "judul", $content = "content", $published, $
     <link rel="stylesheet" href="/assets/vendors/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="/assets/css/app.css">
     <link rel="shortcut icon" href="/assets/images/favicon.svg" type="image/x-icon">
-    <style>
+    <link rel="stylesheet" href="/assets/css/card.css">
+    <!-- <style>
         footer {
             position: relative;
             bottom: 0;
             width: 100%;
             margin-top: 200px;
         }
-    </style>
+    </style> -->
 </head>
 
 <body>
@@ -76,6 +87,7 @@ function displayMentorCard($title = "judul", $content = "content", $published, $
             <div class="content-wrapper container">
                 <br>
                 <div class="page-heading">
+                    <h4>Create New Course</h4>
                     <div class="d-flex justify-content-between mt-5 subtitle mb-3">
                         <h4>Create New Course</h4>
                         <?php if (session()->getFlashData('published_message')) : ?>
@@ -96,6 +108,7 @@ function displayMentorCard($title = "judul", $content = "content", $published, $
                                     </div>
                                     <div class="card-body">
                                         <h4 class="card-title">New Course</h4>
+                                        <p class="card-text" style="opacity: 0;">.</p>
                                     </div>
                                 </div>
                             </a>

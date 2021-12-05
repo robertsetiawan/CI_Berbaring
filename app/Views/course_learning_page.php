@@ -25,9 +25,7 @@ $session = session();
     <link rel="stylesheet" href="/assets/css/landing.css">
     <link rel="stylesheet" href="/assets/css/card.css">
     <style>
-        footer {
-            position: relative; bottom: 0; width: 100%; margin-top: 125px;
-        }
+        
     </style>
 </head>
 

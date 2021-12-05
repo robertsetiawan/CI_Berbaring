@@ -65,7 +65,7 @@ class CourseModel extends Model
         $query = $this->db->query('SELECT * FROM course c 
         INNER JOIN mentor_activity m ON c.c_id = m.c_id 
         INNER JOIN user u ON m.user_id = u.user_id 
-        WHERE c.c_name LIKE "%' . $c_name . '%"');
+        WHERE m.published_date IS NOT NULL AND c.c_name LIKE "%' . $c_name . '%"');
 
         return $query->getResultArray();
     }
@@ -74,7 +74,8 @@ class CourseModel extends Model
     {
         $query = $this->db->query('SELECT * FROM course c 
         INNER JOIN mentor_activity m ON c.c_id = m.c_id 
-        INNER JOIN user u ON m.user_id = u.user_id LIMIT 4');
+        INNER JOIN user u ON m.user_id = u.user_id 
+        WHERE m.published_date IS NOT NULL LIMIT 4');
 
         return $query->getResultArray();
     }
