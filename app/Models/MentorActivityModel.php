@@ -31,4 +31,11 @@ class MentorActivityModel extends Model{
 
         return $query->getResult('array');
     }
+
+    public function getCoursePublishedDate($c_id)
+    {
+        $query = $this->db->query('SELECT published_date FROM mentor_activity WHERE c_id=' .$c_id);
+
+        return $query->getRow();
+    }
 }

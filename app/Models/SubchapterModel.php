@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 class SubchapterModel extends Model{
     protected $table = 'subchapter';
     protected $primaryKey = 'sc_id';
-    protected $allowedFields = ['sc_name', 'sc_video_link', 'sc_filepath', 'sc_desc', 'c_id'];
+    protected $allowedFields = ['sc_id', 'sc_name', 'sc_video_link', 'sc_filepath', 'sc_desc', 'c_id'];
 
     public $validationRules = [
         'sc_name' => 'required',

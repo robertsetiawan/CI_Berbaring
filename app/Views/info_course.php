@@ -30,6 +30,13 @@
                 <div class="page-content">
                     <!-- Basic Tables start -->
                     <section class="section">
+                        <?php if (session()->getFlashData('published_message')) : ?>
+                            <div class="ms-auto w-25 pt-3">
+                                <div class="alert alert-danger">
+                                    <p class="alert-heading"><?= session()->getFlashdata('published_message'); ?></p>
+                                </div>
+                            </div>
+                        <?php endif ?>
                         <div class="d-flex justify-content-between mt-5 subtitle mb-3">
                             <h4><b>Info Course: </b> Course Summary</h4>
                             <a href="<?= base_url('course/' . $course['c_id'] . '/edit') ?>" class="btn btn-primary"><i class="fa fa-edit"></i> Edit Course</a>
@@ -71,7 +78,7 @@
                             <div class="mb-3 row">
                                 <label for="price" class="col-sm-2 col-form-label">Price</label>
                                 <div class="col-sm-10">
-                                    <p><?= 'Rp'. number_format($course['c_price'], 0, ',', '.') ?></p>
+                                    <p><?= 'Rp' . number_format($course['c_price'], 0, ',', '.') ?></p>
                                 </div>
                             </div>
                         <?php endif ?>
@@ -87,7 +94,6 @@
                             <h4><b>Course Content</h4>
                             <a href="<?= base_url('course/' . $course['c_id'] . '/detail') ?>" class="btn btn-primary">Add Chapter</a>
                         </div>
-
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-flex justify-content-center fw-normal">
@@ -99,8 +105,8 @@
                                         <li class="list-group-item d-flex justify-content-between align-items-center"><?= $subchapter['sc_name'] ?>
                                             <div class="d-flex justify-content-start">
                                                 <a href="<?= base_url('course/' . $course['c_id'] . '/' . 'detail/' . $subchapter['sc_id'] . '/edit') ?>" class="btn btn-success mx-1" type="button" title="Edit"><i class="fa fa-edit"></i></a>
-                                                <button class="btn btn-danger" type="button" title="Delete" data-bs-toggle="modal" data-bs-backdrop="false" data-bs-target="<?= '#delete_' . str_replace(' ', '_', $subchapter['sc_name']) ?>"><i class="fa fa-trash"></i></button>
-                                                <div class="modal fade text-left" id="<?= 'delete_' . str_replace(' ', '_', $subchapter['sc_name']) ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+                                                <button class="btn btn-danger" type="button" title="Delete" data-bs-toggle="modal" data-bs-backdrop="false" data-bs-target="<?= '#delete_' . preg_replace('/[^A-Za-z0-9\-]/', '_', $subchapter['sc_name']) ?>"><i class="fa fa-trash"></i></button>
+                                                <div class="modal fade text-left" id="<?= 'delete_' . preg_replace('/[^A-Za-z0-9\-]/', '_', $subchapter['sc_name']) ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
                                                     <div class="modal-dialog modal-dialog-scrollable" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
@@ -133,10 +139,15 @@
                                 </ul>
                             </div>
                         </div>
-
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-5">
-                            <a class="btn btn-primary" type="button">Publish</a>
-                        </div>
+                        <?php if ($course['published_date'] == null) : ?>
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-5">
+                                <a href="<?= base_url('course/' . $course['c_id'] . '/publish') ?>" class="btn btn-primary" type="button">Publish</a>
+                            </div>
+                        <?php else : ?>
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-5">
+                                <p>Already Published</p>
+                            </div>
+                        <?php endif ?>
                     </section>
                 </div>
             </div>

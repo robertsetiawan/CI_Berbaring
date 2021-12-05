@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 class StudentActivityModel extends Model{
     protected $table = 'student_activity';
     protected $primaryKey = 'activity_student_id';
-    protected $allowedFields = ['activity_student_id', 'started_date', 'finished_date', 'user_id', 'c_id'];
+    protected $allowedFields = ['started_date', 'finished_date', 'user_id', 'c_id'];
 
     public $validationRules = [
         
@@ -38,5 +38,12 @@ class StudentActivityModel extends Model{
         $row = $query->getRow();
 
         return $row->totalCourse;
+    }
+
+    public function startCourse($c_id, $user_id)
+    {
+        $query = $this->db->query('UPDATE student_activity SET started_date = NOW() WHERE c_id = '.$c_id.' AND user_id = '.$user_id);
+
+        return $this->db->affectedRows();
     }
 }
