@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,7 +21,8 @@
     <link rel="stylesheet" href="/assets/css/app.css">
     <link rel="shortcut icon" href="/assets/images/favicon.svg" type="image/x-icon">
     <link rel="stylesheet" href="/assets/css/card.css">
-    
+    <link rel="stylesheet" href="/assets/css/responsive-img.css">
+
 </head>
 
 <body>
@@ -36,37 +39,51 @@
                 <div class="page-content">
                     <!-- Basic Tables start -->
                     <section class="content-types">
-                        <div class="row row-cols-3 row-cols-md-4 g-4">
-                            <?php foreach ($course as $c) : ?>
-                                <div class="col">
-                                    <a href="<?= base_url('course/'.$c['c_id']); ?>">
-                                        <div class="card h-90">
-                                            <div class="card-content">
-                                                <img src="<?= '/uploads'.'/'.$c['c_id'].'/'.$c['c_imagepath'] ?>" class="card-img-top img-fluid" alt="">
-                                                <div class="card-body">
-                                                    <h5 class="card-title"><?= $c['c_name'] ?></h5>
-                                                    <p class="card-text"><?= $c['name'] ?></p>
-                                                </div>
-                                                <div class="card-footer border-0">
-                                                    <h6 class="card-text" style="color:#409CA6">
-                                                        <?php if ($c['c_price'] == 0) : ?>
-                                                            FREE
-                                                        <?php else : echo 'Rp'. number_format($c['c_price'], 0, ',', '.') ?>
-                                                    </h6>
-                                                <?php endif ?>
+                        <?php if ($course) : ?>
+                            <div class="row row-cols-3 row-cols-md-4 g-4">
+                                <?php foreach ($course as $c) : ?>
+                                    <div class="col">
+                                        <a href="<?= base_url('course/' . $c['c_id']); ?>">
+                                            <div class="card" style="max-height: 100vw">
+                                                <div class="card-content">
+                                                    <img src="<?= '/uploads' . '/' . $c['c_id'] . '/' . $c['c_imagepath'] ?>" class="card-img-top img-fluid" alt="">
+                                                    <div class="card-body">
+                                                        <?php if (strlen($c['c_name']) > 22) {
+                                                            $judul = substr($c['c_name'], 0, 22);
+                                                            $judul .= "...";
+                                                        } else {
+                                                            $judul = $c['c_name'];
+                                                        }
+                                                        ?>
+                                                        <h5 class="card-title"><?= $judul ?></h5>
+                                                        <p class="card-text"><?= $c['name'] ?></p>
+                                                    </div>
+                                                    <div class="card-footer border-0">
+                                                        <h6 class="card-text" style="color:#409CA6">
+                                                            <?php if ($c['c_price'] == 0) : ?>
+                                                                FREE
+                                                            <?php else : echo 'Rp' . number_format($c['c_price'], 0, ',', '.') ?>
+                                                        </h6>
+                                                    <?php endif ?>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            <?php endforeach ?>
-                        </div>
+                                        </a>
+                                    </div>
+                                <?php endforeach ?>
+                            </div>
+                        <?php else : ?>
+                            <div class="jus">
+                                <img style="padding-bottom: 1em;" src="/assets/images/no_data.png" class="responsive-img" alt="NoData" srcset="">
+                                <h3>Bruh, "<?= $_POST['query']; ?>" gak ditemukan :(</h3>
+                            </div>
+                        <?php endif ?>
                     </section>
                 </div>
             </div>
         </div>
-
-        <footer>
+        <?php include('footer.php') ?>
+        <!-- <footer>
             <div class="container">
                 <div class="footer clearfix mb-0 text-muted">
                     <div class="float-start">
@@ -77,7 +94,7 @@
                     </div>
                 </div>
             </div>
-        </footer>
+        </footer> -->
     </div>
     </div>
     <script src="/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
