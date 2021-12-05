@@ -114,10 +114,7 @@ class Course extends BaseController
 
     public function info($c_id)
     {
-
         $subchapters = new SubchapterModel();
-
-        $data['course'] = $this->courses->info($c_id);
 
         $mentorActivities = new MentorActivityModel();
 
@@ -125,7 +122,12 @@ class Course extends BaseController
 
         if (session()->get('id') == $mentorActivity->user_id) {
 
+            $data['course'] = $this->courses->info($c_id);
+
+            $data['course']['published_date'] = $mentorActivities->getCoursePublishedDate($c_id)->published_date;
+
             $data['subchapters'] = $subchapters->where('c_id', $c_id)->findAll();
+
             return view('info_course', $data);
         } else {
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
@@ -141,11 +143,12 @@ class Course extends BaseController
         // return dd($data);
     }
 
-    public function landing(){
+    public function landing()
+    {
         $data['course'] = $this->courses->landing();
         return view('landing_page', $data);
     }
-      
+
     public function edit($c_id)
     {
         $mentorActivities = new MentorActivityModel();
@@ -247,6 +250,28 @@ class Course extends BaseController
         }
     }
 
+    public function publish($c_id)
+    {
+        $mentorActivities = new MentorActivityModel();
+
+        $mentorActivity = $mentorActivities->getCouserCreatorId($c_id);
+
+        if (session()->get('id') == $mentorActivity->user_id) {
+
+            if ($this->courses->publishCourse($c_id) > 0) {
+                session()->setFlashdata('published_message', 'Publish Course Berhasil!');
+
+                return redirect()->to('/homepage/mentor');
+            } else {
+                session()->setFlashdata('published_message', 'Publish Course Gagal!');
+
+                return redirect()->back();
+            }
+        } else {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
+    }
+
     public function course_page($c_id)
     {
 
@@ -255,35 +280,33 @@ class Course extends BaseController
         $session = session();
 
         //check sudah beli belum
-        if ($session->get('is_logged_in')){
-            $check_query = $student->query('SELECT count(*) AS jumlah FROM student_activity WHERE c_id = '.$c_id.' AND user_id = '.$session->get('id'));
+        if ($session->get('is_logged_in')) {
+            $check_query = $student->query('SELECT count(*) AS jumlah FROM student_activity WHERE c_id = ' . $c_id . ' AND user_id = ' . $session->get('id'));
             $check_data =  $check_query->getRowArray();
-        }else{
-            $check_data['jumlah']=0;
+        } else {
+            $check_data['jumlah'] = 0;
         }
-        if ($session->get('is_logged_in')==false || $check_data['jumlah']==0){
+        if ($session->get('is_logged_in') == false || $check_data['jumlah'] == 0) {
             $data['course'] = $this->courses->getCourseDetail($c_id);
             $data['chapters'] = $subchapters->getChapters($c_id);
             $data['mode'] = 1; //sudah beli
 
-            if ($data['course']!=NULL){
+            if ($data['course'] != NULL) {
                 return view('course_learning_page.php', $data);
-            }else{
+            } else {
                 throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
             }
-        }else{
+        } else {
             $data['course'] = $this->courses->getCourseDetail($c_id);
             $data['chapters'] = $subchapters->getChapters($c_id);
             $data['mode'] = 2; //belum beli
 
-            if ($data['course']!=NULL){
+            if ($data['course'] != NULL) {
                 return view('course_learning_page.php', $data);
-            }else{
+            } else {
                 throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
             }
         }
-
-        
     }
 
     public function course_subchapter_page($c_id, $sc_id)
@@ -291,28 +314,28 @@ class Course extends BaseController
         $student = new StudentActivityModel();
         $subchapters = new SubchapterModel();
         $session = session();
-        
+
         //check sudah beli belum
-        if ($session->get('is_logged_in')){
-            $check_query = $student->query('SELECT count(*) AS jumlah FROM student_activity WHERE c_id = '.$c_id.' AND user_id = '.$session->get('id'));
+        if ($session->get('is_logged_in')) {
+            $check_query = $student->query('SELECT count(*) AS jumlah FROM student_activity WHERE c_id = ' . $c_id . ' AND user_id = ' . $session->get('id'));
             $check_data =  $check_query->getRowArray();
-        }else{
-            $check_data['jumlah']=0;
+        } else {
+            $check_data['jumlah'] = 0;
         }
-        
-        if ($check_data['jumlah']!=0){
+
+        if ($check_data['jumlah'] != 0) {
             $data['course'] = $this->courses->getCourseDetail($c_id);
             $data['chapters'] = $subchapters->getChapters($c_id);
-            $data['subchapter'] = $data['chapters'][$sc_id-1];
+            $data['subchapter'] = $data['chapters'][$sc_id - 1];
             $data['no'] = $sc_id;
             $data['mode'] = 3;
 
-            if ($data['subchapter']!=NULL AND $data['course']!=NULL){
+            if ($data['subchapter'] != NULL and $data['course'] != NULL) {
                 return view('course_learning_page.php', $data);
-            }else{
+            } else {
                 throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
             }
-        }else{
+        } else {
             return redirect()->to(base_url('course/' . $c_id));
         }
     }
