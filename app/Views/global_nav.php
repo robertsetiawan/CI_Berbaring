@@ -8,7 +8,7 @@ if (!$session->get('is_logged_in')){
     $learnings = '/homepage/pelajar/1';
 }*/
 $learnings = '/homepage/pelajar/1';
-$mentor = 'homepage/mentor';
+$mentor = '/homepage/mentor';
 ?>
 
 <link rel="stylesheet" href="/assets/css/global_nav.css">
@@ -43,7 +43,7 @@ $mentor = 'homepage/mentor';
                     <li class="menu-item">
                         <div class="container">
                             <div class="logo">
-                                <a href="#"><img src="/assets/images/logo/berbaring_light.png" height="50" class="d-inline-block align-top" alt="Logo" srcset=""></a>
+                                <img src="/assets/images/logo/berbaring_light.png" height="50" class="d-inline-block align-top" alt="Logo" srcset="">
                             </div>
                         </div>
                     </li>

@@ -30,7 +30,7 @@
                 <div class="page-content">
                     <!-- Basic Tables start -->
                     <section class="section">
-                        <div class="subtitle mb-3">
+                        <div class="subtitle mt-3 mb-3">
                             <h4><b>Create Course: </b> Course Summary</h4>
                         </div>
                         <form method="POST" action="<?= base_url('/course/add') ?>" enctype="multipart/form-data" onsubmit="validationForm()">
@@ -165,8 +165,8 @@
                     </section>
                 </div>
             </div>
-
-            <footer>
+            <?php include('footer.php') ?>
+            <!-- <footer>
                 <div class="container">
                     <div class="footer clearfix mb-0 text-muted">
                         <div class="float-start">
@@ -177,7 +177,7 @@
                         </div>
                     </div>
                 </div>
-            </footer>
+            </footer> -->
 
         </div>
     </div>
