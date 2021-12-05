@@ -25,14 +25,14 @@ function displayMentorCard($title = "judul", $content = "content", $published, $
     echo '
     <div class="col">
     <a href=' . base_url('/course' . '/' . $anchor . '/info') . '>
-    <div class="card" style="max-width: 20rem; max-height: 25rem;">
+    <div class="card" style="max-height: 100vw">
         <div class="card-content style: \'position: relative;\'">
-            <img class="img-fluid w-100" src="' . $picture . '" style: "object-fit= cover; height: 12vw" alt="image" style= "object-fit: cover; height: 12vw">
+            <img class="card-img-top img-fluid" src="' . $picture . '" alt="image">
             <span 
             style="position: absolute; 
             bottom: 0px; right: 0px; 
-            background: #3C64B1;
-            opacity: 0.5; color: white; 
+            background:' . $background . ';
+            opacity: 1; color: white; 
             padding-left: 16px; padding-right: 16px;">' . $publish . '</span>
         </div>
         <div class="card-body">
