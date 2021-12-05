@@ -88,6 +88,8 @@ class Subchapter extends BaseController
 
             $file->move(ROOTPATH . 'public/uploads/' . $c_id . '/' . $sc_id . '/', $fileName);
 
+            $data['sc_id'] = $sc_id;
+
             $data['sc_name'] = $this->request->getPost('sc_name');
 
             $data['sc_video_link'] = $this->request->getPost('sc_video_link');
