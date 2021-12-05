@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="/assets/css/footer.css">
 <footer>
     <div class="p-5" style="background-color: rgba(1, 1, 1, 1)">
         <!-- Sosial Media -->
