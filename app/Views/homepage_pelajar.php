@@ -9,8 +9,8 @@ function displayCard($title = "judul", $content = "content", $start, $anchor = "
         $title = $title;
     }
 
-    if (strlen($content) > 50) {
-        $deskripsi = substr($content, 0, 50);
+    if (strlen($content) > 27) {
+        $deskripsi = substr($content, 0, 27);
         $deskripsi .= "...";
     } else {
         $deskripsi = $content;
@@ -22,7 +22,7 @@ function displayCard($title = "judul", $content = "content", $start, $anchor = "
     echo '
     <div class="col">
     <a href="' . $anchor . '">
-    <div class="card" style="max-height: 100vw">
+    <div class="card" style="max-width: 20rem; max-height: 25rem;">
         <div class="card-content style: \'position: relative;\'">
             <img class="card-img-top img-fluid" src="' . $picture . '" alt="image" style= "object-fit: cover; height: 12vw">
         </div>

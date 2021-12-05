@@ -27,7 +27,7 @@ function displayMentorCard($title = "judul", $content = "content", $published, $
     <a href=' . base_url('/course' . '/' . $anchor . '/info') . '>
     <div class="card" style="max-width: 20rem; max-height: 25rem;">
         <div class="card-content style: \'position: relative;\'">
-            <img class="img-fluid w-100" src="' . $picture . '" style: "object-fit= cover; height: 12vw" alt="image" style= "object-fit: cover; height: 12vw">
+            <img class="img-fluid w-100" src="' . $picture . '" alt="image" style= "object-fit: cover; height: 12vw">
             <span 
             style="position: absolute; 
             bottom: 0px; right: 0px; 
@@ -89,7 +89,6 @@ function displayMentorCard($title = "judul", $content = "content", $published, $
                 <div class="page-heading">
                     <h4>Create New Course</h4>
                     <div class="d-flex justify-content-between mt-5 subtitle mb-3">
-                        <h4>Create New Course</h4>
                         <?php if (session()->getFlashData('published_message')) : ?>
                             <div class="alert alert-success">
                                 <p class="alert-heading"><?= session()->getFlashdata('published_message'); ?></p>
@@ -104,7 +103,7 @@ function displayMentorCard($title = "judul", $content = "content", $published, $
                             <a href="<?= base_url('/course') ?>">
                                 <div class="card" style="max-width: 20rem; max-height: 25rem;">
                                     <div class="card-content style: 'position: relative;'">
-                                        <img class="img-fluid w-100" src="<?= base_url('assets/images/addcourse.png') ?>" style="object-fit: cover" alt="image">
+                                        <img class="img-fluid w-100" src="<?= base_url('assets/images/addcourse.png') ?>" style="object-fit: cover; height: 12vw" alt="image">
                                     </div>
                                     <div class="card-body">
                                         <h4 class="card-title">New Course</h4>
