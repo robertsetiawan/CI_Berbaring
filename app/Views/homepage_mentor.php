@@ -81,7 +81,7 @@ function displayMentorCard($title="judul", $content="content", $published, $anch
                                 <a href="<?= base_url('/course')?>">
                                 <div class="card" style="max-width: 20rem; max-height: 25rem;">
                                     <div class="card-content style: 'position: relative;'">
-                                        <img class="img-fluid w-100" src="/assets/images/addcourse.png" style= "object-fit: cover" alt="image">
+                                        <img class="img-fluid w-100" src="<?= base_url('assets/images/addcourse.png') ?>" style= "object-fit: cover" alt="image">
                                     </div>
                                     <div class="card-body">
                                         <h4 class="card-title">New Course</h4>
