@@ -67,7 +67,7 @@ $mentor = '/homepage/mentor';
                     </li>
 
                     <li class="menu-item w-25">
-                        <form action="<?= base_url('/search'); ?>" method="POST">
+                        <form action="<?= base_url('search') ?>" method="GET">
                             <!-- getGet('search') -->
                             <div class="form-group position-relative has-icon-left">
                                 <input name="query" type="text" class="form-control" placeholder="Search ">

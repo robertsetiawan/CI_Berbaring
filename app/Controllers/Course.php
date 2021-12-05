@@ -137,10 +137,13 @@ class Course extends BaseController
 
     public function search()
     {
-        $cc_name = $this->request->getPost('query');
-        $data['course'] = $this->courses->searchc($cc_name);
+        $query = $this->request->getVar('query');
+
+        $data['query'] = $query;
+
+        $data['course'] = $this->courses->searchc($query);
+
         return view('search_course', $data);
-        // return dd($data);
     }
 
     public function landing()
