@@ -34,7 +34,7 @@
             <div class="content-wrapper container" style="padding-top: 60px;">
 
                 <div class="page-heading">
-                    <h3>Result for "<?= $_POST['query']; ?>"</h3>
+                    <h3>Result for "<?= $query ?>"</h3>
                 </div>
                 <div class="page-content">
                     <!-- Basic Tables start -->
@@ -75,7 +75,7 @@
                         <?php else : ?>
                             <div class="jus">
                                 <img style="padding-bottom: 1em;" src="/assets/images/no_data.png" class="responsive-img" alt="NoData" srcset="">
-                                <h3>Bruh, "<?= $_POST['query']; ?>" gak ditemukan :(</h3>
+                                <h3>Bruh, "<?= $query ?>" gak ditemukan :(</h3>
                             </div>
                         <?php endif ?>
                     </section>

@@ -47,7 +47,7 @@ $routes->get('/course/(:segment)/learn/(:any)', 'Course::course_subchapter_page/
 $routes->get('/course/(:segment)/enroll', 'StudentActivity::enroll/$1', ['filter' => 'auth']);
 $routes->get('/course/(:segment)/start', 'StudentActivity::startCourse/$1', ['filter' => 'auth']);
 $routes->add('/course/add', 'Course::add', ['filter' => 'auth']); //method post buat tambah course baru
-$routes->add('/search', 'Course::search');
+$routes->get('/search', 'Course::search');
 $routes->add('/login/process', 'User::login');
 $routes->add('/register/process', 'User::register');
 $routes->get('/logout', 'User::logout');
