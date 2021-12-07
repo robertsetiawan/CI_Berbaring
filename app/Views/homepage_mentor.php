@@ -1,6 +1,6 @@
 <?php
 //untuk keperluan card homepage mentor
-function displayMentorCard($title = "judul", $content = "content", $published, $anchor, $picture = "/assets/images/samples/banana.jpg")
+function displayMentorCard($title = "judul", $content = "content", $published = NULL, $anchor = "#", $picture = "/assets/images/samples/banana.jpg")
 {
     if (strlen($title) > 22) {
         $title = substr($title, 0, 22);
