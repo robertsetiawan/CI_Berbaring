@@ -71,7 +71,7 @@ $session = session();
                                                         <tbody>
                                                             <tr>
                                                                 <th><i class='fas fa-file-video' style='font-size:14px'></th>
-                                                                <td>39 Videos</td>
+                                                                <td><?php echo count($chapters) ?> Videos</td>
                                                             </tr>
                                                             <tr>
                                                                 <th><i class='fas fa-comment-alt' style='font-size:14px'></th>
@@ -79,7 +79,7 @@ $session = session();
                                                             </tr>
                                                             <tr>
                                                                 <th><i class='fas fa-folder-open' style='font-size:14px'></th>
-                                                                <td>5 Downloadable resource</td>
+                                                                <td><?php echo count($chapters) ?> Downloadable resource</td>
                                                             </tr>
                                                             <tr>
                                                                 <th><i class='fas fa-clock' style='font-size:14px'></th>
@@ -108,7 +108,7 @@ $session = session();
                                         <!--Mentor-->
                                         <div class="row align-items-start">
                                             <div class="col">
-                                                <img class="mb-1" src="https://awsimages.detik.net.id/community/media/visual/2020/03/02/2a63b94a-6c0c-4a98-bb8a-22d39ba1c449_43.jpeg?w=700&q=90" height="120" width="120" style="object-fit: cover; border-radius: 50%">
+                                                <img class="mb-1" src="/assets/images/default.png" height="120" width="120" style="object-fit: cover; border-radius: 50%">
                                             </div>
                                             <div class="col">
                                                 <p><b><?= $course['publisher'] ?></b></p>
@@ -205,7 +205,7 @@ $session = session();
                                         <!--Mentor-->
                                         <div class="row align-items-start">
                                             <div class="col">
-                                                <img class="mb-1" src="https://awsimages.detik.net.id/community/media/visual/2020/03/02/2a63b94a-6c0c-4a98-bb8a-22d39ba1c449_43.jpeg?w=700&q=90" height="120" width="120" style="object-fit: cover; border-radius: 50%">
+                                                <img class="mb-1" src="/assets/images/default.png" height="120" width="120" style="object-fit: cover; border-radius: 50%">
                                             </div>
                                             <div class="col">
                                                 <p><b><?= $course['publisher'] ?></b></p>
@@ -296,7 +296,7 @@ $session = session();
                                         <!--Mentor-->
                                         <div class="row align-items-start">
                                             <div class="col">
-                                                <img class="mb-1" src="https://awsimages.detik.net.id/community/media/visual/2020/03/02/2a63b94a-6c0c-4a98-bb8a-22d39ba1c449_43.jpeg?w=700&q=90" height="120" width="120" style="object-fit: cover; border-radius: 50%">
+                                                <img class="mb-1" src="/assets/images/default.png" height="120" width="120" style="object-fit: cover; border-radius: 50%">
                                             </div>
                                             <div class="col">
                                                 <p><b><?= $course['publisher'] ?></b></p>
