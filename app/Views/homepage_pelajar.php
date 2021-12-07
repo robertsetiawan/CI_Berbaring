@@ -1,6 +1,6 @@
 <?php
 //untuk keperluan card homepage pelajar
-function displayCard($title = "judul", $content = "content", $start, $anchor = "#", $picture = "/assets/images/samples/banana.jpg")
+function displayCard($title = "judul", $content = "content", $start = NULL, $anchor = "#", $picture = "/assets/images/samples/banana.jpg")
 {
     if (strlen($title) > 22) {
         $title = substr($title, 0, 22);
