@@ -54,12 +54,12 @@ $session = session();
                                                     <div class="card-body">
                                                         <h6 class="card-title"><?= $course['c_name'] ?></h6>
                                                         <p class="card-text"><?= $course['publisher'] ?></p>
-                                                        <a href="#" class="card-link"><?php
-                                                                                        if ($course['c_price'] > 0) {
-                                                                                            echo 'RP. ' . $course['c_price'];
-                                                                                        } else {
-                                                                                            echo 'FREE';
-                                                                                        } ?></a>
+                                                        <h6 class="card-text" style="color:#409CA6">
+                                                            <?php if ($course['c_price'] == 0) : ?>
+                                                                FREE
+                                                            <?php else : echo 'Rp' . number_format($course['c_price'], 0, ',', '.') ?>
+                                                            <?php endif ?>
+                                                        </h6>
                                                     </div>
                                                 </div>
                                             </div>
@@ -234,8 +234,14 @@ $session = session();
                                             <h6 class="mb-4"><?= 'Chapter ' . $no . ': ' . $subchapter['sc_name'] ?></h5>
                                                 <div class="col">
                                                     <!--yt vid-->
-                                                    <iframe width="1280" height="720" src="<?= $subchapter['sc_video_link'] ?>">
-                                                    </iframe>
+                                                    <?php
+                                                    preg_match("/^(?:http(?:s)?:\/\/)?(?:www\.)?(?:m\.)?(?:youtu\.be\/|youtube\.com\/(?:(?:watch)?\?(?:.*&)?v(?:i)?=|(?:embed|v|vi|user|shorts)\/))([^\?&\"'>]+)/", $subchapter['sc_video_link'], $matches);
+                                                    
+                                                    ?>
+                                                    <div class="ratio ratio-16x9">
+                                                        <iframe width="1280" height="720" src="<?= "https://www.youtube.com/embed/".$matches[1] ?>">
+                                                        </iframe>
+                                                    </div>
                                                 </div>
                                         </div>
                                         <div class="row">
@@ -246,7 +252,7 @@ $session = session();
                                                     <div class="card-body">
                                                         <table class="table table-borderless">
                                                             <tbody>
-                                                                <a href="<?= base_url('uploads/' . $course['c_id'] . '/' . $subchapter['sc_id'] . '/' . urldecode($subchapter['sc_filepath'])) ?>" target="_blank" rel="noopener noreferrer"><?= $subchapter['sc_filepath'] ?></a><br>
+                                                                <a href="<?= base_url('uploads/' . $course['c_id'] . '/' . $subchapter['sc_id'] . '/' . $subchapter['sc_filepath']) ?>" target="_blank" rel="noopener noreferrer"><?= $subchapter['sc_filepath'] ?></a><br>
                                                             </tbody>
                                                         </table>
                                                     </div>
