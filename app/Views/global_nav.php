@@ -94,9 +94,15 @@ $mentor = '/homepage/mentor';
 
                     <?php else : ?>
                         <li class="menu-item">
-                            <a href="<?= base_url('/logout') ?>" class='menu-link'>
-                                <span><?= $session->get('email') ?></span>
-                            </a>
+                            <span><?= $session->get('email') ?></span>
+                            <div class="submenu ">
+                                <ul class="submenu-group">
+                                    <li class="submenu-item  ">
+                                        <a href="<?= base_url('/logout') ?>"  
+                                        class='submenu-link'>Logout</a>               
+                                </li>
+                            </div>    
+                           
                         </li>
                     <?php endif ?>
                 </ul>
