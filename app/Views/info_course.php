@@ -105,8 +105,8 @@
                                         <li class="list-group-item d-flex justify-content-between align-items-center"><?= $subchapter['sc_name'] ?>
                                             <div class="d-flex justify-content-start">
                                                 <a href="<?= base_url('course/' . $course['c_id'] . '/' . 'detail/' . $subchapter['sc_id'] . '/edit') ?>" class="btn btn-success mx-1" type="button" title="Edit"><i class="fa fa-edit"></i></a>
-                                                <button class="btn btn-danger" type="button" title="Delete" data-bs-toggle="modal" data-bs-backdrop="false" data-bs-target="<?= '#delete_' . preg_replace('/[^A-Za-z0-9\-]/', '_', $subchapter['sc_name']) ?>"><i class="fa fa-trash"></i></button>
-                                                <div class="modal fade text-left" id="<?= 'delete_' . preg_replace('/[^A-Za-z0-9\-]/', '_', $subchapter['sc_name']) ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+                                                <button class="btn btn-danger" type="button" title="Delete" data-bs-toggle="modal" data-bs-backdrop="false" data-bs-target="<?= '#delete_' . preg_replace('/[^A-Za-z0-9\-]/', '_', $subchapter['sc_name'] . '_' . $subchapter['sc_id']) ?>"><i class="fa fa-trash"></i></button>
+                                                <div class="modal fade text-left" id="<?= 'delete_' . preg_replace('/[^A-Za-z0-9\-]/', '_', $subchapter['sc_name'] . '_' . $subchapter['sc_id']) ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
                                                     <div class="modal-dialog modal-dialog-scrollable" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
