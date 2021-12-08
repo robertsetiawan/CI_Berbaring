@@ -25,7 +25,6 @@ class Subchapter extends BaseController
         if ($validation->hasError('sc_desc')) {
             session()->setFlashdata('error_sc_desc', $validation->getError('sc_desc'));
         }
-        
     }
 
 
@@ -46,7 +45,7 @@ class Subchapter extends BaseController
 
         $inputUrl = $this->request->getPost('sc_video_link');
 
-        if (!filter_var($inputUrl, FILTER_VALIDATE_URL)){
+        if (!filter_var($inputUrl, FILTER_VALIDATE_URL)) {
 
             session()->setFlashdata('error_sc_video_link_2', 'Format URL tidak sesuai');
         }
@@ -60,7 +59,7 @@ class Subchapter extends BaseController
                 ],
                 'errors' => [
                     'uploaded' => 'Harus ada file yang diupload',
-                    'mime_in' => 'Format file harus berupa jpg,jpeg,png',
+                    'mime_in' => 'Format file harus berupa document misal word, dll',
                     'max_size' => 'Ukuran file maksimal 10 MB'
                 ]
             ]
@@ -82,7 +81,7 @@ class Subchapter extends BaseController
 
             $file = $this->request->getFile('sc_filepath');
 
-            $fileName = $file->getName();
+            $fileName =  preg_replace('/[^A-Za-z0-9\-]/', '_', $file->getName()) . '.' . $file->guessExtension();
 
             $sc_id = (int)round(gettimeofday(true));
 
@@ -146,7 +145,7 @@ class Subchapter extends BaseController
                     ],
                     'errors' => [
                         'uploaded' => 'Harus Ada File yang diupload',
-                        'mime_in' => 'Format File Harus Berupa jpg,jpeg,png',
+                        'mime_in' => 'Format file harus berupa document misal word, dll',
                         'max_size' => 'Ukuran File Maksimal 10 MB'
                     ]
                 ]
@@ -161,7 +160,7 @@ class Subchapter extends BaseController
 
                 $file = $this->request->getFile('sc_filepath');
 
-                $fileName = $file->getName();
+                $fileName =  preg_replace('/[^A-Za-z0-9\-]/', '_', $file->getName()) . '.' . $file->guessExtension();
 
                 $file->move(ROOTPATH . 'public/uploads/' . $c_id . '/' . $sc_id . '/', $fileName);
 

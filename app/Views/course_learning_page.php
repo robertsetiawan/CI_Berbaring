@@ -50,7 +50,7 @@ $session = session();
                                             <div class="col">
                                                 <!--Card course-->
                                                 <div class="card" style="width: 18rem;">
-                                                    <img src="<?= '/uploads' . '/' . $course['c_id'] . '/' . $course['c_imagepath'] ?>" class="card-img-top" alt="...">
+                                                    <img src="<?= base_url('uploads/' . $course['c_id'] . '/' . $course['c_imagepath']) ?>" class="card-img-top" alt="...">
                                                     <div class="card-body">
                                                         <h6 class="card-title"><?= $course['c_name'] ?></h6>
                                                         <p class="card-text"><?= $course['publisher'] ?></p>

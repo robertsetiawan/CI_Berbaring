@@ -121,7 +121,7 @@ function displayMentorCard($title = "judul", $content = "content", $published = 
                                 $course['c_desc'],
                                 $course['published_date'],
                                 $course['c_id'],
-                                '/uploads' . '/' . $course['c_id'] . '/' . $course['c_imagepath']
+                                base_url('uploads/' . $course['c_id'] . '/' . $course['c_imagepath'])
                             );
                         }
                         ?>
