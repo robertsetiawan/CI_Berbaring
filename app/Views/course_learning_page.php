@@ -234,8 +234,12 @@ $session = session();
                                             <h6 class="mb-4"><?= 'Chapter ' . $no . ': ' . $subchapter['sc_name'] ?></h5>
                                                 <div class="col">
                                                     <!--yt vid-->
+                                                    <?php
+                                                    preg_match("/^(?:http(?:s)?:\/\/)?(?:www\.)?(?:m\.)?(?:youtu\.be\/|youtube\.com\/(?:(?:watch)?\?(?:.*&)?v(?:i)?=|(?:embed|v|vi|user|shorts)\/))([^\?&\"'>]+)/", $subchapter['sc_video_link'], $matches);
+                                                    
+                                                    ?>
                                                     <div class="ratio ratio-16x9">
-                                                        <iframe src="<?= $subchapter['sc_video_link'] ?>">
+                                                        <iframe width="1280" height="720" src="<?= "https://www.youtube.com/embed/".$matches[1] ?>">
                                                         </iframe>
                                                     </div>
                                                 </div>
